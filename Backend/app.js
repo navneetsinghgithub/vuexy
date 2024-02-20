@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
+
+
 const fileupload = require("express-fileupload")
 const connectionDb = require("./connectionDb/connectionDb")
 const dotenv =require("dotenv")
@@ -12,6 +14,7 @@ var app = express();
 dotenv.config()
 let port= process.env.port
 connectionDb()
+
 
 
 // view engine setup
@@ -26,7 +29,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

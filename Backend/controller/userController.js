@@ -45,6 +45,7 @@ module.exports = {
             return;
         }
     },
+
     login: async (req, res) => {
         try {
             const login = await userModel.findOne({ email: req.body.email })
@@ -97,6 +98,7 @@ module.exports = {
         }
 
     },
+
     findUser: async (req, res) => {
         try {
             const find = await userModel.find()
@@ -110,6 +112,7 @@ module.exports = {
             return;
         }
     },
+
     findSingleUser: async (req, res) => {
         try {
             const findSingle = await userModel.findById({
@@ -125,6 +128,7 @@ module.exports = {
             return;
         }
     },
+
     updateUser: async (req, res) => {
         try {
             const update = await userModel.findByIdAndUpdate({
@@ -142,6 +146,7 @@ module.exports = {
             return;
         }
     },
+
     deleteUser: async (req, res) => {
         try {
             const deletes = await userModel.findByIdAndDelete({
@@ -157,6 +162,32 @@ module.exports = {
 
         }
     },
+
+    changePassword: async (req, res) => {
+        try {
+            const data = await userModel.findOne({ _id: req.user._id })
+            const decryptPassword = await bcrypt.compare(req.body.newPassword, data.password)
+            if (decryptPassword == false) {
+                return res.json({
+                    message: "password does not match",
+                    status: 400,
+                    body: {}
+                })
+            }
+            const encryptPassword = await bcrypt.hash(req.body.newPassword, saltRound)
+            data.password = encryptPassword
+            data.save()
+            return res.json({
+                message: "password updated successfully",
+                status: 200,
+                body: data
+            })
+
+        } catch (error) {
+            console.log(error, "error");
+        }
+    },
+    
     logout: async (req, res) => {
         try {
             const logout = await userModel.findByIdAndUpdate({

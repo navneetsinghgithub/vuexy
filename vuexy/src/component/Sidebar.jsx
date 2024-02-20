@@ -121,14 +121,12 @@ function Sidebar() {
                         data-menu="menu-navigation"
                     >
                         <li className=" nav-item">
-                            <a className="d-flex align-items-center" href="index.html">
+                            <a className="d-flex align-items-center" href="/dash">
                                 <i data-feather="home" />
                                 <span className="menu-title text-truncate" data-i18n="Dashboards">
                                     Dashboards
                                 </span>
-                                <span className="badge badge-light-warning rounded-pill ms-auto me-1">
-                                    2
-                                </span>
+                              
                             </a>
 
                         </li>
@@ -137,11 +135,21 @@ function Sidebar() {
                             <i data-feather="more-horizontal" />
                         </li>
                         <li className=" nav-item">
-                            <a className="d-flex align-items-center" href="app-email.html">
+                            <a className="d-flex align-items-center" href="/user">
                                 <i data-feather="mail" />
                                 <Link to={"/user"} className="menu-title text-truncate">
                                 <span data-i18n="Email">
                                     User
+                                </span>
+                                </Link>
+                            </a>
+                        </li>
+                        <li className=" nav-item">
+                            <a className="d-flex align-items-center" href="app-email.html">
+                                <i data-feather="mail" />
+                                <Link to={"/termsCondition"} className="menu-title text-truncate">
+                                <span data-i18n="Email">
+                                    Terms & Condition
                                 </span>
                                 </Link>
                             </a>

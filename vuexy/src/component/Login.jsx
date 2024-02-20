@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 function Login() {
     return (
         <>
@@ -134,9 +136,9 @@ function Login() {
                                                     <label className="form-label" htmlFor="login-password">
                                                         Password
                                                     </label>
-                                                    <a href="page-auth-forgot-password-v2.html">
+                                                    {/* <a href="page-auth-forgot-password-v2.html">
                                                         <small>Forgot Password?</small>
-                                                    </a>
+                                                    </a> */}
                                                 </div>
                                                 <div className="input-group input-group-merge form-password-toggle">
                                                     <input
@@ -156,20 +158,7 @@ function Login() {
 
                                                 </div>
                                             </div>
-                                            <div className="mb-1">
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        id="remember-me"
-                                                        type="checkbox"
-                                                        tabIndex={3}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="remember-me">
-                                                        {" "}
-                                                        Remember Me
-                                                    </label>
-                                                </div>
-                                            </div>
+                                           
                                             <button className="btn btn-primary w-100" tabIndex={4}>
                                                 Sign in
                                             </button>
