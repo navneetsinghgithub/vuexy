@@ -19,23 +19,24 @@ module.exports = {
         }
     },
 
-    findCms: async (req, res) => {
+    findSingleCms: async (req, res) => {
         try {
-            const data = await cms.find()
-
+            const data = await cms.findOne({
+                type:req.body.type
+            })
             return res.json({
-                message: "find Cms ",
+                message: "find single Cms ",
                 status: 200,
                 body: data
             })
         } catch (error) {
 
-        }
+        }``
     },
     updateCms: async (req, res) => {
         try {
-            const data = await cms.findByIdAndUpdate({
-                _id: req.params.id
+            const data = await cms.findOneAndUpdate({
+                type:req.body.type
             }, { title: req.body.title, content: req.body.content }, { new: true })
 
             return res.json({

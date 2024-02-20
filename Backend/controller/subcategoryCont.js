@@ -1,10 +1,27 @@
 
 const subCategoryModel = require("../Model/subcategoryModel")
-const {imageupload} = require("../helper/helper")
+const { Validator } = require("node-input-validator")
+const { imageupload, checkValidation } = require("../helper/helper")
 
 module.exports = {
     addSubCategory: async (req, res) => {
         try {
+
+            const v = new Validator(req.body, {
+                name: "required",
+                categoryId:"required",
+            })
+            let errorResponse = await checkValidation(v)
+            console.log(errorResponse, "rrrrrrrrrrrr");
+            if (errorResponse) {
+                return res.json({
+                    success: false,
+                    status: 404,
+                    message: errorResponse,
+                    body: {}
+                })
+            }
+
 
             if (req.files && req.files.image.name) {
                 const image = req.files.image;
@@ -12,7 +29,7 @@ module.exports = {
             }
             const data = await subCategoryModel.create({
                 name: req.body.name, image: req.body.image,
-                categoryId:req.body.categoryId
+                categoryId: req.body.categoryId
             })
             return res.json({
                 message: "add data",
@@ -27,7 +44,7 @@ module.exports = {
     findSubCategory: async (req, res) => {
         try {
             const data = await subCategoryModel.find()
-          
+
             return res.json({
                 message: "find data",
                 status: 200,
@@ -41,9 +58,9 @@ module.exports = {
     findSingleSubCategory: async (req, res) => {
         try {
             const data = await subCategoryModel.findById({
-                _id:req.params.id
+                _id: req.params.id
             })
-          
+
             return res.json({
                 message: "find Single Data ",
                 status: 200,
@@ -56,9 +73,9 @@ module.exports = {
     updateSubCategory: async (req, res) => {
         try {
             const data = await subCategoryModel.findByIdAndUpdate({
-                _id:req.params.id
-            },{name:req.body.name , image:req.body.image},{new:true})
-          
+                _id: req.params.id
+            }, { name: req.body.name, image: req.body.image }, { new: true })
+
             return res.json({
                 message: " updated Data ",
                 status: 200,
@@ -72,9 +89,9 @@ module.exports = {
     deleteSubCategory: async (req, res) => {
         try {
             const data = await subCategoryModel.findByIdAndDelete({
-                _id:req.params.id
-            },{new:true})
-          
+                _id: req.params.id
+            }, { new: true })
+
             return res.json({
                 message: " delete  Data ",
                 status: 200,

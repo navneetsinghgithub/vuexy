@@ -1,9 +1,24 @@
 const categoryModel = require("../Model/categoryModel")
-const {imageupload} = require("../helper/helper")
+const { Validator } = require("node-input-validator")
+const { imageupload , checkValidation} = require("../helper/helper")
 
 module.exports = {
     createCategory: async (req, res) => {
         try {
+
+            const v = new Validator(req.body, {
+                name: "required",
+            })
+            let errorResponse = await checkValidation(v)
+            if (errorResponse) {
+                return res.json({
+                    success: false,
+                    status: 404,
+                    message: errorResponse,
+                    body: {}
+                })
+            }
+
 
             if (req.files && req.files.image.name) {
                 const image = req.files.image;
@@ -25,7 +40,7 @@ module.exports = {
     findCategory: async (req, res) => {
         try {
             const data = await categoryModel.find()
-          
+
             return res.json({
                 message: "find data",
                 status: 200,
@@ -39,9 +54,9 @@ module.exports = {
     findSingleCategory: async (req, res) => {
         try {
             const data = await categoryModel.findById({
-                _id:req.params.id
+                _id: req.params.id
             })
-          
+
             return res.json({
                 message: "find Single Data ",
                 status: 200,
@@ -54,9 +69,9 @@ module.exports = {
     updateCategory: async (req, res) => {
         try {
             const data = await categoryModel.findByIdAndUpdate({
-                _id:req.params.id
-            },{name:req.body.name , image:req.body.image},{new:true})
-          
+                _id: req.params.id
+            }, { name: req.body.name, image: req.body.image }, { new: true })
+
             return res.json({
                 message: " updated Data ",
                 status: 200,
@@ -70,9 +85,9 @@ module.exports = {
     deleteCategory: async (req, res) => {
         try {
             const data = await categoryModel.findByIdAndDelete({
-                _id:req.params.id
-            },{new:true})
-          
+                _id: req.params.id
+            }, { new: true })
+
             return res.json({
                 message: " delete  Data ",
                 status: 200,

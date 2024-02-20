@@ -5,11 +5,13 @@ const usersSchema = new mongoose.Schema({
     email:
         { type: String },
     phone:
-        { type: String },
+        { type: Number },
     image:
         { type: String },
     password:
         { type: String },
+    otp:
+        { type: Number ,default:0 },
     role:
         { type: Number, enum: [0, 1], default: 1 }, // admin = 0 , user = 1 
     status:
@@ -17,7 +19,7 @@ const usersSchema = new mongoose.Schema({
     token:
         { type: String },
     logintime:
-        { type: String }
+        { type: Number }
 
 }, { timestamps: true })
 

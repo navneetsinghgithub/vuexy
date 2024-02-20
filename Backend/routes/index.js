@@ -36,8 +36,8 @@ router.delete("/deleteSubCategory/:id",controllerss.deleteSubCategory)
 
 ///////Cms //////
 router.post("/createCms",controllercms.createCms)
-router.get("/findCms",controllercms.findCms)
-router.put("/updateCms/:id",controllercms.updateCms)
+router.post("/findSingleCms",controllercms.findSingleCms)
+router.put("/updateCms",controllercms.updateCms)
 
 
 

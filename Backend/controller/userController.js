@@ -17,8 +17,37 @@ module.exports = {
             })
             let errorResponse = await checkValidation(v)
             if (errorResponse) {
-                return res.json(errorResponse)
+                return res.json({
+                    success: false,
+                    status: 404,
+                    message: errorResponse,
+                    body: {}
+                })
             }
+            const email = await userModel.findOne({
+                email: req.body.email,
+            })
+            if (email) {
+                return res.json({
+                    success: false,
+                    status: 400,
+                    message: "email already exist",
+                    body: {}
+                })
+            }
+            const phone = await userModel.findOne({
+                phone: req.body.phone
+            })
+            if (phone) {
+                return res.json({
+                    success: false,
+                    status: 400,
+                    message: "phone number already exist",
+                    body: {}
+                })
+            }
+
+
             if (req.files && req.files.image.name) {
                 const image = req.files.image;
                 if (image) req.body.image = imageupload(image, "userImage");
@@ -26,9 +55,10 @@ module.exports = {
 
 
             const password = await bcrypt.hash(req.body.password, saltRound)
+            const otp = 1111
             const sign = await userModel.create({
                 name: req.body.name, email: req.body.email, phone: req.body.phone,
-                image: req.body.image, role: req.body.role, status: req.body.status, password: password,
+                image: req.body.image, role: req.body.role, status: req.body.status, password: password, otp: otp
             })
             const token = await tokengenerate(sign._id)
 
@@ -51,15 +81,17 @@ module.exports = {
             const login = await userModel.findOne({ email: req.body.email })
             if (!login) {
                 return res.json({
-                    message: "data not found",
+                    success: false,
                     status: 400,
+                    message: "data not found",
                     body: {}
                 })
             }
             else if (login.isVerified === 0) {
                 return res.json({
-                    message: "not verified",
+                    success: false,
                     status: 400,
+                    message: "not verified",
                     body: {}
                 })
             }
@@ -69,8 +101,9 @@ module.exports = {
             }, { token: token.token, logintime: token.time }, { new: true })
             if (!login) {
                 return res.json({
-                    message: "email or password is not correct",
+                    success: false,
                     status: 400,
+                    message: "email or password is not correct",
                     body: {}
                 })
             } else {
@@ -78,14 +111,16 @@ module.exports = {
                     const password = await bcrypt.compare(req.body.password, login.password);
                     if (!password) {
                         return res.json({
-                            message: "wrong password",
+                            success: false,
                             status: 400,
+                            message: "wrong password",
                             body: {}
                         })
                     } else {
                         return res.json({
-                            message: "login success",
+                            success: true,
                             status: 200,
+                            message: "login success",
                             body: login
                         })
                     }
@@ -94,7 +129,11 @@ module.exports = {
             }
 
         } catch (error) {
-            console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
 
     },
@@ -169,8 +208,9 @@ module.exports = {
             const decryptPassword = await bcrypt.compare(req.body.newPassword, data.password)
             if (decryptPassword == false) {
                 return res.json({
-                    message: "password does not match",
+                    success: false,
                     status: 400,
+                    message: "password does not match",
                     body: {}
                 })
             }
@@ -178,16 +218,21 @@ module.exports = {
             data.password = encryptPassword
             data.save()
             return res.json({
-                message: "password updated successfully",
+                success: true,
                 status: 200,
+                message: "password updated successfully",
                 body: data
             })
 
         } catch (error) {
-            console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 404,
+                message: "error"
+            })
         }
     },
-    
+
     logout: async (req, res) => {
         try {
             const logout = await userModel.findByIdAndUpdate({
@@ -195,15 +240,17 @@ module.exports = {
             }, { logintime: 0 }, { new: true })
             if (!logout) {
                 return res.json({
-                    message: "you are already logout",
+                    success: false,
                     status: 400,
+                    message: "you are already logout",
                     body: {}
                 })
             } else {
                 return res.json({
-                    message: "logout successfully",
+                    success: true,
                     status: 200,
-                    body: logout
+                    message: "logout successfully",
+                    body: {}
                 })
             }
         } catch (error) {
