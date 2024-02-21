@@ -1,20 +1,40 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import axios from "axios"
 
 
 function Login() {
+    const [data, setdata] = useState()
+
+    const handlechange = (e) => {
+        setdata({ ...data, [e.target.name]: e.target.value })
+    }
+
+    const getdata = (e) => {
+        try {
+            axios.post("http://localhost:1000/login", data).then((res) => {
+                console.log(data, "tttttttttttttttt");
+                setdata(res.data.body)
+            }).catch((error) => {
+                console.log(error, "error");
+            })
+        } catch (error) {
+            console.log(error, "error");
+        }
+    }
+
     return (
         <>
-            <div className="app-content content ">
-                <div className="content-overlay" />
-                <div className="header-navbar-shadow" />
-                <div className="content-wrapper">
-                    <div className="content-header row"></div>
-                    <div className="content-body">
-                        <div className="auth-wrapper auth-v2">
-                            <div className="auth-inner row m-0">
-                                {/* Brand logo*/}
-                                {/* <a className="brand-logo" href="#">
+            <form onSubmit={getdata} onChange={handlechange}>
+                <div className="app-content content ">
+                    <div className="content-overlay" />
+                    <div className="header-navbar-shadow" />
+                    <div className="content-wrapper">
+                        <div className="content-header row"></div>
+                        <div className="content-body">
+                            <div className="auth-wrapper auth-v2">
+                                <div className="auth-inner row m-0">
+                                    {/* Brand logo*/}
+                                    {/* <a className="brand-logo" href="#">
                     <svg
                         viewBox="0 0 139 95"
                         version="1.1"
@@ -92,9 +112,9 @@ function Login() {
                     </svg>
                     <h2 className="brand-text text-primary ms-1">Vuexy</h2>
                 </a> */}
-                                {/* /Brand logo*/}
-                                {/* Left Text*/}
-                                {/* <div className="d-none d-lg-flex col-lg-8 align-items-center p-5">
+                                    {/* /Brand logo*/}
+                                    {/* Left Text*/}
+                                    {/* <div className="d-none d-lg-flex col-lg-8 align-items-center p-5">
                     <div className="w-100 d-lg-flex align-items-center justify-content-center px-5">
                         <img
                             className="img-fluid"
@@ -103,76 +123,76 @@ function Login() {
                         />
                     </div>
                 </div> */}
-                                {/* /Left Text*/}
-                                {/* Login*/}
-                                <div className="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
-                                    <div className="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                                        <h2 className="card-title fw-bold mb-1">Welcome to Vuexy! 👋</h2>
-                                        <p className="card-text mb-2">
-                                            Please sign-in to your account and start the adventure
-                                        </p>
-                                        <form
-                                            className="auth-login-form mt-2"
-                                            action="index.html"
-                                            method="POST"
-                                        >
-                                            <div className="mb-1">
-                                                <label className="form-label" htmlFor="login-email">
-                                                    Email
-                                                </label>
-                                                <input
-                                                    className="form-control"
-                                                    id="login-email"
-                                                    type="text"
-                                                    name="login-email"
-                                                    placeholder="john@example.com"
-                                                    aria-describedby="login-email"
-                                                    autofocus=""
-                                                    tabIndex={1}
-                                                />
-                                            </div>
-                                            <div className="mb-1">
-                                                <div className="d-flex justify-content-between">
-                                                    <label className="form-label" htmlFor="login-password">
-                                                        Password
+                                    {/* /Left Text*/}
+                                    {/* Login*/}
+                                    <div className="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+                                        <div className="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+                                            <h2 className="card-title fw-bold mb-1">Welcome to Vuexy! 👋</h2>
+                                            <p className="card-text mb-2">
+                                                Please sign-in to your account and start the adventure
+                                            </p>
+                                            <form
+                                                className="auth-login-form mt-2"
+                                                action="index.html"
+                                                method="POST"
+                                            >
+                                                <div className="mb-1">
+                                                    <label className="form-label" htmlFor="login-email">
+                                                        Email
                                                     </label>
-                                                    {/* <a href="page-auth-forgot-password-v2.html">
-                                                        <small>Forgot Password?</small>
-                                                    </a> */}
-                                                </div>
-                                                <div className="input-group input-group-merge form-password-toggle">
                                                     <input
-                                                        className="form-control form-control-merge"
-                                                        id="login-password"
-                                                        type="password"
-                                                        name="login-password"
-                                                        placeholder="············"
-                                                        aria-describedby="login-password"
+                                                        className="form-control"
+                                                        id="login-email"
+                                                        type="text"
+                                                        name="login-email"
+                                                        placeholder="john@example.com"
+                                                        aria-describedby="login-email"
+                                                        autofocus=""
                                                         tabIndex={1}
                                                     />
-                                                    <span className="input-group-text cursor-pointer">
-                                                        <i data-feather="eye" />
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
-                                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0" /></g></svg>
-                                                    </span>
-
                                                 </div>
-                                            </div>
-                                           
-                                            <button className="btn btn-primary w-100" tabIndex={4}>
-                                                Sign in
-                                            </button>
-                                        </form>
-                                        {/* <p className="text-center mt-2">
+                                                <div className="mb-1">
+                                                    <div className="d-flex justify-content-between">
+                                                        <label className="form-label" htmlFor="login-password">
+                                                            Password
+                                                        </label>
+                                                        {/* <a href="page-auth-forgot-password-v2.html">
+                                                        <small>Forgot Password?</small>
+                                                    </a> */}
+                                                    </div>
+                                                    <div className="input-group input-group-merge form-password-toggle">
+                                                        <input
+                                                            className="form-control form-control-merge"
+                                                            id="login-password"
+                                                            type="password"
+                                                            name="login-password"
+                                                            placeholder="············"
+                                                            aria-describedby="login-password"
+                                                            tabIndex={1}
+                                                        />
+                                                        <span className="input-group-text cursor-pointer">
+                                                            <i data-feather="eye" />
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0" /></g></svg>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+
+                                                <button className="btn btn-primary w-100" tabIndex={4}>
+                                                    Sign in
+                                                </button>
+                                            </form>
+                                            {/* <p className="text-center mt-2">
                             <span>New on our platform?</span>
                             <a href="page-auth-register-v2.html">
                                 <span>&nbsp;Create an account</span>
                             </a>
                         </p> */}
-                                        {/* <div className="divider my-2">
+                                            {/* <div className="divider my-2">
                             <div className="divider-text">or</div>
                         </div> */}
-                                        {/* <div className="auth-footer-btn d-flex justify-content-center">
+                                            {/* <div className="auth-footer-btn d-flex justify-content-center">
                             <a className="btn btn-facebook" href="#">
                                 <i data-feather="facebook" />
                             </a>
@@ -186,14 +206,15 @@ function Login() {
                                 <i data-feather="github" />
                             </a>
                         </div> */}
+                                        </div>
                                     </div>
+                                    {/* /Login*/}
                                 </div>
-                                {/* /Login*/}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </>
     )
 }
