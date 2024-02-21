@@ -1,6 +1,6 @@
 const categoryModel = require("../Model/categoryModel")
 const { Validator } = require("node-input-validator")
-const { imageupload , checkValidation} = require("../helper/helper")
+const { imageupload, checkValidation } = require("../helper/helper")
 
 module.exports = {
     createCategory: async (req, res) => {
@@ -28,12 +28,17 @@ module.exports = {
                 name: req.body.name, image: req.body.image
             })
             return res.json({
-                message: "add data",
+                success: true,
                 status: 200,
+                message: "add data",
                 body: data
             })
         } catch (error) {
-            // console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -42,12 +47,17 @@ module.exports = {
             const data = await categoryModel.find()
 
             return res.json({
-                message: "find data",
+                success: true,
                 status: 200,
+                message: "find data",
                 body: data
             })
         } catch (error) {
-            console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -58,14 +68,20 @@ module.exports = {
             })
 
             return res.json({
-                message: "find Single Data ",
+                success: true,
                 status: 200,
+                message: "find Single Data ",
                 body: data
             })
         } catch (error) {
-            // console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
+    
     updateCategory: async (req, res) => {
         try {
             const data = await categoryModel.findByIdAndUpdate({
@@ -73,12 +89,17 @@ module.exports = {
             }, { name: req.body.name, image: req.body.image }, { new: true })
 
             return res.json({
-                message: " updated Data ",
+                success: true,
                 status: 200,
+                message: " updated Data ",
                 body: data
             })
         } catch (error) {
-            // console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -89,12 +110,17 @@ module.exports = {
             }, { new: true })
 
             return res.json({
-                message: " delete  Data ",
+                success: true,
                 status: 200,
+                message: " delete  Data ",
                 body: data
             })
         } catch (error) {
-            // console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 }

@@ -66,13 +66,17 @@ module.exports = {
                 _id: sign._id
             }, { token: token.token, logintime: token.time }, { new: true })
             return res.json({
-                message: "users created",
+                success: true,
                 status: 200,
+                message: "users created",
                 body: updateResult
             })
         } catch (error) {
-            console.log(error, "error");
-            return;
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -142,13 +146,17 @@ module.exports = {
         try {
             const find = await userModel.find()
             return res.json({
-                message: " find all users",
+                success: true,
                 status: 200,
+                message: " find all users",
                 body: find
             })
         } catch (error) {
-            console.log(error, "error");
-            return;
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -158,13 +166,17 @@ module.exports = {
                 _id: req.params.id
             })
             return res.json({
-                message: " find single users",
+                success: true,
                 status: 200,
+                message: " find single users",
                 body: findSingle
             })
         } catch (error) {
-            console.log(error, "error");
-            return;
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -176,13 +188,17 @@ module.exports = {
                 { name: req.body.name, email: req.body.email, image: req.body.image, phone: req.body.phone },
                 { new: true })
             return res.json({
-                message: " update users",
+                success: true,
                 status: 200,
+                message: " update users",
                 body: update
             })
         } catch (error) {
-            console.log(error, "error");
-            return;
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -192,13 +208,17 @@ module.exports = {
                 _id: req.params.id
             })
             return res.json({
-                message: " delete users",
+                success: true,
                 status: 200,
+                message: " delete users",
                 body: deletes
             })
         } catch (error) {
-            console.log(error, "error");
-
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -254,7 +274,11 @@ module.exports = {
                 })
             }
         } catch (error) {
-
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     }
 

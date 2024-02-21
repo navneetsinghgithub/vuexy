@@ -1,7 +1,4 @@
-
-
 const cms = require("../Model/CmsModel")
-
 
 module.exports = {
     createCms: async (req, res) => {
@@ -10,42 +7,58 @@ module.exports = {
                 title: req.body.title, content: req.body.content, type: req.body.type
             })
             return res.json({
-                message: "create cms",
+                success: true,
                 status: 200,
+                message: "create cms",
                 body: data
             })
         } catch (error) {
-
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
     findSingleCms: async (req, res) => {
         try {
             const data = await cms.findOne({
-                type:req.body.type
+                type: req.body.type
             })
             return res.json({
-                message: "find single Cms ",
+                success: true,
                 status: 200,
+                message: "find single Cms ",
                 body: data
             })
         } catch (error) {
-
-        }``
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
+        }
     },
+
     updateCms: async (req, res) => {
         try {
             const data = await cms.findOneAndUpdate({
-                type:req.body.type
+                type: req.body.type
             }, { title: req.body.title, content: req.body.content }, { new: true })
 
             return res.json({
-                message: "update  Cms  ",
+                success: true,
                 status: 200,
+                message: "update  Cms  ",
                 body: data
             })
         } catch (error) {
-
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 }

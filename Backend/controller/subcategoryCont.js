@@ -9,7 +9,7 @@ module.exports = {
 
             const v = new Validator(req.body, {
                 name: "required",
-                categoryId:"required",
+                categoryId: "required",
             })
             let errorResponse = await checkValidation(v)
             console.log(errorResponse, "rrrrrrrrrrrr");
@@ -32,12 +32,17 @@ module.exports = {
                 categoryId: req.body.categoryId
             })
             return res.json({
-                message: "add data",
+                success: true,
                 status: 200,
+                message: "add data",
                 body: data
             })
         } catch (error) {
-            console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -46,12 +51,17 @@ module.exports = {
             const data = await subCategoryModel.find()
 
             return res.json({
-                message: "find data",
+                success: true,
                 status: 200,
+                message: "find data",
                 body: data
             })
         } catch (error) {
-            console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -62,14 +72,20 @@ module.exports = {
             })
 
             return res.json({
-                message: "find Single Data ",
+                success: true,
                 status: 200,
+                message: "find Single Data ",
                 body: data
             })
         } catch (error) {
-            // console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
+
     updateSubCategory: async (req, res) => {
         try {
             const data = await subCategoryModel.findByIdAndUpdate({
@@ -77,12 +93,17 @@ module.exports = {
             }, { name: req.body.name, image: req.body.image }, { new: true })
 
             return res.json({
-                message: " updated Data ",
+                success: true,
                 status: 200,
+                message: " updated Data ",
                 body: data
             })
         } catch (error) {
-            // console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 
@@ -93,12 +114,17 @@ module.exports = {
             }, { new: true })
 
             return res.json({
-                message: " delete  Data ",
+                success: true,
                 status: 200,
+                message: " delete  Data ",
                 body: data
             })
         } catch (error) {
-            // console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
         }
     },
 }
