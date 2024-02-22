@@ -4,8 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
-
-
+const cors = require("cors")
 const fileupload = require("express-fileupload")
 const connectionDb = require("./connectionDb/connectionDb")
 const dotenv =require("dotenv")
@@ -18,7 +17,9 @@ connectionDb()
 
 
 // view engine setup
+
 app.use(fileupload())
+app.use(cors())
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'index');
 

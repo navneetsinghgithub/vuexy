@@ -1,6 +1,28 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+
 
 function User() {
+    const [data, setData] = useState()
+
+    const getData = () => {
+        try {
+            axios.get("http://localhost:1000/findUser").then((res) => {
+                console.log(res, "ressssssssssss");
+                setData(res.data.body)
+            }).catch((error) => {
+                console.log(error, "error");
+            })
+        } catch (error) {
+            console.log(error, "error");
+        }
+    }
+    useEffect(() => {
+        getData()
+    }, [])
+
+
     return (
         <>
             <div className="app-content content ">
@@ -30,12 +52,35 @@ function User() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                                        </tr>
+                                        {data?.map((e, key) => (
+                                            <tr key={key}>
+                                                <td>{e?.name}</td>
+                                                <td>{e?.email}</td>
+                                                <td>{e?.phone}</td>
+                                                <td>
+                                                    <div className="rounded- overflow  border-2 border-white">
+                                                        <img height={"100px"} width={"100px"}
+                                                            className="img-fluid rounded mb-50"
+                                                            src={
+                                                                e?.image !== ""
+                                                                    ? `http://localhost:1000/images/userImage/${e?.image
+                                                                    }`
+                                                                    : ``
+                                                            }
+                                                            alt="avatar img"
+                                                        />
+                                                    </div>
+                                                </td>
+                                                <td>{e?.role}</td>
+                                                <td>{e?.status}</td>
+                                                <td>
+                                          <Link to={"/edit"}><button type='button' className='btn btn-primary'>Edit</button></Link>          
+                                                    &nbsp;
+                                                    <button type='button' className='btn btn-danger'>Delete</button>
+                                                </td>
+                                            </tr>
+                                        ))}
+
                                     </tbody>
 
                                 </table>

@@ -10,7 +10,7 @@ const controllercms = require('../controller/cmscontroller');
 
 router.post("/signup", controller.signup)
 router.post("/login", controller.login)
-router.get("/findUser", auth, controller.findUser)
+router.get("/findUser", controller.findUser)
 router.get("/findSingleUser/:id", controller.findSingleUser)
 router.put("/updateUser/:id", controller.updateUser)
 router.delete("/deleteUser/:id", controller.deleteUser)
