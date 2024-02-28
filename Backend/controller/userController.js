@@ -9,7 +9,6 @@ module.exports = {
     signup: async (req, res) => {
         try {
 
-
             const v = new Validator(req.body, {
                 name: "required",
                 email: "required",
@@ -144,7 +143,7 @@ module.exports = {
 
     findUser: async (req, res) => {
         try {
-            const find = await userModel.find()
+            const find = await userModel.find().count()
             return res.json({
                 success: true,
                 status: 200,
@@ -182,11 +181,16 @@ module.exports = {
 
     updateUser: async (req, res) => {
         try {
+            if (req.files && req.files.image.name) {
+                const image = req.files.image;
+                if (image) req.body.image = imageupload(image, "userImage");
+            }
             const update = await userModel.findByIdAndUpdate({
                 _id: req.params.id
             },
                 { name: req.body.name, email: req.body.email, image: req.body.image, phone: req.body.phone },
                 { new: true })
+             
             return res.json({
                 success: true,
                 status: 200,
@@ -281,6 +285,5 @@ module.exports = {
             })
         }
     }
-
 
 }

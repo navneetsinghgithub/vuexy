@@ -21,15 +21,15 @@ module.exports = {
         }
     },
 
-    findSingleCms: async (req, res) => {
+    TermC: async (req, res) => {
         try {
             const data = await cms.findOne({
-                type: req.body.type
+                type: 1
             })
             return res.json({
                 success: true,
                 status: 200,
-                message: "find single Cms ",
+                message: "find term & condition ",
                 body: data
             })
         } catch (error) {
@@ -41,10 +41,93 @@ module.exports = {
         }
     },
 
-    updateCms: async (req, res) => {
+
+    privacyP: async (req, res) => {
+        try {
+            const data = await cms.findOne({
+                type: 2
+            })
+            return res.json({
+                success: true,
+                status: 200,
+                message: "find privacy policy ",
+                body: data
+            })
+        } catch (error) {
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
+        }
+    },
+
+    aboutUs: async (req, res) => {
+        try {
+            const data = await cms.findOne({
+                type: 3
+            })
+            return res.json({
+                success: true,
+                status: 200,
+                message: "find about us ",
+                body: data
+            })
+        } catch (error) {
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
+        }
+    },
+
+    updateTermCms: async (req, res) => {
         try {
             const data = await cms.findOneAndUpdate({
-                type: req.body.type
+                type: 1
+            }, { title: req.body.title, content: req.body.content }, { new: true })
+
+            return res.json({
+                success: true,
+                status: 200,
+                message: "update  Cms  ",
+                body: data
+            })
+        } catch (error) {
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
+        }
+    },
+
+    updatePrivacyCms: async (req, res) => {
+        try {
+            const data = await cms.findOneAndUpdate({
+                type: 2
+            }, { title: req.body.title, content: req.body.content }, { new: true })
+
+            return res.json({
+                success: true,
+                status: 200,
+                message: "update  Cms  ",
+                body: data
+            })
+        } catch (error) {
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
+        }
+    },
+
+    updateAboutCms: async (req, res) => {
+        try {
+            const data = await cms.findOneAndUpdate({
+                type: 3
             }, { title: req.body.title, content: req.body.content }, { new: true })
 
             return res.json({

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import Swal from "sweetalert2"
 
 function User() {
     const [data, setData] = useState()
@@ -9,7 +9,6 @@ function User() {
     const getData = () => {
         try {
             axios.get("http://localhost:1000/findUser").then((res) => {
-                console.log(res, "ressssssssssss");
                 setData(res.data.body)
             }).catch((error) => {
                 console.log(error, "error");
@@ -23,6 +22,35 @@ function User() {
     }, [])
 
 
+    const deleteHandler = (id) => {
+        try {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await axios.delete(`http://localhost:1000/deleteUser/${id}`).then((res) => {
+                        getData()
+                    })
+
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            });
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <div className="app-content content ">
@@ -35,7 +63,7 @@ function User() {
                         <section className="app-user-list">
                             <div className="card mt-3">
                                 <div className="d-flex mt-1">
-                                    <input className="form-control" style={{ marginLeft: "50rem", marginRight: "2rem" }} type="search" placeholder="Search" aria-label="Search" />
+                                 <input className="form-control" style={{ marginLeft: "50rem", marginRight: "2rem" }} type="search" placeholder="Search" aria-label="Search" />
                                     <button type="button" className="btn btn-primary">Add</button>
                                 </div>
 
@@ -58,9 +86,9 @@ function User() {
                                                 <td>{e?.email}</td>
                                                 <td>{e?.phone}</td>
                                                 <td>
-                                                    <div className="rounded- overflow  border-2 border-white">
-                                                        <img height={"100px"} width={"100px"}
-                                                            className="img-fluid rounded mb-50"
+                                                    <div className="rounded- overflow  border-1 border-white">
+                                                        <img height={"50px"} width={"70px"}
+                                                            className="img-fluid rounded mb-100"
                                                             src={
                                                                 e?.image !== ""
                                                                     ? `http://localhost:1000/images/userImage/${e?.image
@@ -74,9 +102,11 @@ function User() {
                                                 <td>{e?.role}</td>
                                                 <td>{e?.status}</td>
                                                 <td>
-                                          <Link to={"/edit"}><button type='button' className='btn btn-primary'>Edit</button></Link>          
+                                                    <Link to={`/edit/${e?._id}`}><button type='button' className='btn btn-primary'>Edit</button></Link>
                                                     &nbsp;
-                                                    <button type='button' className='btn btn-danger'>Delete</button>
+                                                    <button type='submit' onClick={() => {
+                                                        deleteHandler(e?._id)
+                                                    }} className='btn btn-danger'>Delete</button>
                                                 </td>
                                             </tr>
                                         ))}

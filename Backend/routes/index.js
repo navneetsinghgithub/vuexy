@@ -36,8 +36,14 @@ router.delete("/deleteSubCategory/:id",controllerss.deleteSubCategory)
 
 ///////Cms //////
 router.post("/createCms",controllercms.createCms)
-router.post("/findSingleCms",controllercms.findSingleCms)
-router.put("/updateCms",controllercms.updateCms)
+router.get("/TermC",controllercms.TermC)
+router.get("/privacyP",controllercms.privacyP)
+router.get("/aboutUs",controllercms.aboutUs)
+router.put("/updateTermCms",controllercms.updateTermCms)
+router.put("/updatePrivacyCms",controllercms.updatePrivacyCms)
+router.put("/updateAboutCms",controllercms.updateAboutCms)
+
+
 
 
 

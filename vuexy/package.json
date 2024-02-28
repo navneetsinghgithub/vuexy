@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^41.1.0",
+    "@ckeditor/ckeditor5-react": "^6.2.0",
     "axios": "^1.6.7",
+    "ckeditor5": "^41.1.0",
     "feather-icons": "^4.29.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0"
+    "react-router-dom": "^6.22.0",
+    "sweetalert2": "^11.10.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

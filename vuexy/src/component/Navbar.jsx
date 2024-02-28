@@ -2,14 +2,10 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 
 function Navbar() {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const splitValue = searchParams.get('/');
-
     return (
         <nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
             <div className="navbar-container d-flex content">
-            {splitValue && <span>Split Value: {splitValue}</span>}
+            {/* {splitValue && <span>Split Value: {splitValue}</span>} */}
                 <div className="bookmark-wrapper d-flex align-items-center">
                     <ul className="nav navbar-nav d-xl-none">
                         <li className="nav-item">
@@ -18,7 +14,7 @@ function Navbar() {
                             </a>
                         </li>
                     </ul>
-                    {splitValue && <span>Split Value: {splitValue}</span>}
+                    {/* {splitValue && <span>Split Value: {splitValue}</span>} */}
                     <ul className="nav navbar-nav bookmark-icons">
                     </ul>
                     <ul className="nav navbar-nav">
@@ -56,22 +52,12 @@ function Navbar() {
                             <a className="dropdown-item" href="page-profile.html">
                                 <i className="me-50" data-feather="user" /> Profile
                             </a>
-                            {/* <a className="dropdown-item" href="app-todo.html">
-                                <i className="me-50" data-feather="check-square" /> Task
-                            </a> */}
-                            {/* <a className="dropdown-item" href="app-chat.html">
-                                <i className="me-50" data-feather="message-square" /> Chats
-                            </a> */}
+                         
                             <div className="dropdown-divider" />
                             <a className="dropdown-item" href="page-account-settings.html">
                                 <i className="me-50" data-feather="settings" /> Change Password
                             </a>
-                            {/* <a className="dropdown-item" href="page-pricing.html">
-                                <i className="me-50" data-feather="credit-card" /> Pricing
-                            </a> */}
-                            {/* <a className="dropdown-item" href="page-faq.html">
-                                <i className="me-50" data-feather="help-circle" /> FAQ
-                            </a>  */}
+                          
                             <a className="dropdown-item" href="page-auth-login-v2.html">
                                 <i className="me-50" data-feather="power" /> Logout
                             </a>
