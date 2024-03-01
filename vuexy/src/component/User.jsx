@@ -1,14 +1,16 @@
-import axios from 'axios'
+
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Swal from "sweetalert2"
+import { httpFile } from '../../config/axiosConfig'
 
 function User() {
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
 
     const getData = () => {
         try {
-            axios.get("http://localhost:1000/findUser").then((res) => {
+            httpFile.get("http://localhost:1000/findUser").then((res) => {
+                console.log(res, "responseeeeeeeeeeeeee")
                 setData(res.data.body)
             }).catch((error) => {
                 console.log(error, "error");
@@ -34,7 +36,7 @@ function User() {
                 confirmButtonText: "Yes, delete it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await axios.delete(`http://localhost:1000/deleteUser/${id}`).then((res) => {
+                    await httpFile.delete(`http://localhost:1000/deleteUser/${id}`).then((res) => {
                         getData()
                     })
 
@@ -63,7 +65,7 @@ function User() {
                         <section className="app-user-list">
                             <div className="card mt-3">
                                 <div className="d-flex mt-1">
-                                 <input className="form-control" style={{ marginLeft: "50rem", marginRight: "2rem" }} type="search" placeholder="Search" aria-label="Search" />
+                                    <input className="form-control" style={{ marginLeft: "50rem", marginRight: "2rem" }} type="search" placeholder="Search" aria-label="Search" />
                                     <button type="button" className="btn btn-primary">Add</button>
                                 </div>
 
@@ -80,6 +82,7 @@ function User() {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {/* {console.log(data, "cnasldjb")} */}
                                         {data?.map((e, key) => (
                                             <tr key={key}>
                                                 <td>{e?.name}</td>
@@ -110,7 +113,6 @@ function User() {
                                                 </td>
                                             </tr>
                                         ))}
-
                                     </tbody>
 
                                 </table>

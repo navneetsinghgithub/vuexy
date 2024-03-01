@@ -110,23 +110,23 @@ module.exports = {
                     body: {}
                 })
             } else {
-                if (login.email == req.body.email) {
-                    const password = await bcrypt.compare(req.body.password, login.password);
-                    if (!password) {
-                        return res.json({
-                            success: false,
-                            status: 400,
-                            message: "wrong password",
-                            body: {}
-                        })
-                    } else {
-                        return res.json({
-                            success: true,
-                            status: 200,
-                            message: "login success",
-                            body: login
-                        })
-                    }
+
+                const password = await bcrypt.compare(req.body.password, login.password);
+                if (!password) {
+                    return res.json({
+                        success: false,
+                        status: 400,
+                        message: "wrong password",
+                        body: {}
+                    })
+                } else {
+                    return res.json({
+                        success: true,
+                        status: 200,
+                        message: "login success",
+                        body: login
+                    })
+
                 }
 
             }
@@ -141,9 +141,51 @@ module.exports = {
 
     },
 
+    getAdminProfile: async (req, res) => {
+        try {
+
+            const getProfile = await userModel.findById({
+                _id: req.params.id
+            })
+            return res.json({
+                success: true,
+                status: 200,
+                message: " get profile successful",
+                body: getProfile
+            })
+        } catch (error) {
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error",
+            })
+        }
+    },
+
+    updateAdminProfile: async (req, res) => {
+        try {
+            const updateAdminProfile = await userModel.findByIdAndUpdate({
+                _id: req.params.id
+            }, { name: req.body.name, image: req.body.image, phone: req.body.phone }, { new: true })
+            return res.json({
+                message: "updated admin profile",
+                success: true,
+                status: 200,
+                body: updateAdminProfile
+            })
+        } catch (error) {
+            return res.json({
+                message: "error",
+                status: 400,
+                success: false
+            })
+        }
+    },
+
+
     findUser: async (req, res) => {
         try {
-            const find = await userModel.find().count()
+            const find = await userModel.find()
             return res.json({
                 success: true,
                 status: 200,
@@ -190,7 +232,7 @@ module.exports = {
             },
                 { name: req.body.name, email: req.body.email, image: req.body.image, phone: req.body.phone },
                 { new: true })
-             
+
             return res.json({
                 success: true,
                 status: 200,

@@ -5,6 +5,7 @@ const userModel = require("../Model/userModel")
 module.exports = {
     auth: async (req, res, next) => {
         let token
+        console.log("object")
         if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
             try {
                 const token = req.headers.authorization.split(" ")[1]

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Sidebar() {
     return (
         <>
-           
+
             <div
                 className="main-menu menu-fixed menu-dark menu-accordion menu-shadow"
                 data-scroll-to-active="true"  >
@@ -126,7 +126,7 @@ function Sidebar() {
                                 <span className="menu-title text-truncate" data-i18n="Dashboards">
                                     Dashboards
                                 </span>
-                              
+
                             </a>
 
                         </li>
@@ -138,9 +138,9 @@ function Sidebar() {
                             <a className="d-flex align-items-center" href="/user">
                                 <i data-feather="mail" />
                                 <Link to={"/user"} className="menu-title text-truncate">
-                                <span data-i18n="Email">
-                                    User
-                                </span>
+                                    <span data-i18n="Email">
+                                        User
+                                    </span>
                                 </Link>
                             </a>
                         </li>
@@ -148,13 +148,32 @@ function Sidebar() {
                             <a className="d-flex align-items-center" href="app-email.html">
                                 <i data-feather="mail" />
                                 <Link to={"/termsCondition"} className="menu-title text-truncate">
-                                <span data-i18n="Email">
-                                    Terms & Condition
-                                </span>
+                                    <span data-i18n="Email">
+                                        Terms & Condition
+                                    </span>
                                 </Link>
                             </a>
                         </li>
-
+                        <li className=" nav-item">
+                            <a className="d-flex align-items-center" href="app-email.html">
+                                <i data-feather="mail" />
+                                <Link to={"/PrivacyPolicy"} className="menu-title text-truncate">
+                                    <span data-i18n="Email">
+                                        Privacy & Policy
+                                    </span>
+                                </Link>
+                            </a>
+                        </li>
+                        <li className=" nav-item">
+                            <a className="d-flex align-items-center" href="app-email.html">
+                                <i data-feather="mail" />
+                                <Link to={"/aboutUs"} className="menu-title text-truncate">
+                                    <span data-i18n="Email">
+                                        About Us
+                                    </span>
+                                </Link>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

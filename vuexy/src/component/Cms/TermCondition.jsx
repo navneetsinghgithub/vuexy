@@ -1,8 +1,8 @@
-import axios from 'axios';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 import React, { useEffect, useState } from 'react'
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useNavigate } from 'react-router-dom';
+import { httpFile } from '../../../config/axiosConfig';
 
 function TermCondition() {
 
@@ -15,7 +15,7 @@ function TermCondition() {
 
 
   const getData = async () => {
-    await axios
+    await httpFile
       .get(`http://localhost:1000/TermC`, {
         // headers: {
         //   Authorization: `Bearer ${adminInfo?.token}`,
@@ -39,7 +39,6 @@ function TermCondition() {
   }, []);
 
   const contentChange = (e, editor) => {
-    console.log(editor, "editor")
     setTermsCondition({
       ...termsCondition,
       content: editor.getData(),
@@ -56,8 +55,8 @@ function TermCondition() {
       setUpdateValidation("This field is required");
       return Error;
     }
-    axios
-      .put(`http://localhost:1000/updateCms`, termsCondition, {
+    httpFile
+      .put(`http://localhost:1000/updateTermCms`, termsCondition, {
         //   headers: {
         //     Authorization: `Bearer ${adminInfo?.token}`,
         //   },`
