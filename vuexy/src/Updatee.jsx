@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import axios from 'axios'
+import { httpFile } from '../config/axiosConfig'
 
 function Updatee() {
     const [data, setData] = useState()
@@ -13,8 +13,7 @@ function Updatee() {
     }
     const getSingleData = () => {
         try {
-            axios.get(`http://localhost:1000/findSingleUser/${id}`, data).then((res) => {
-                // console.log(res.data, "ressssskjhkjhkjsssssssss");
+            httpFile.get(`http://localhost:1000/findSingleUser/${id}`, data).then((res) => {
                 setData(res.data.body)
                
             }).catch((error) => {
@@ -31,13 +30,14 @@ function Updatee() {
     const updateData = (e) => {
         e.preventDefault()
         try {
-            axios.put(`http://localhost:1000/updateUser/${id}`, data, {
+    httpFile.put(`http://localhost:1000/updateUser/${id}`, data, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             }).then((res) => {
                 setData(res.data.body)
                 navigate("/user")
+                window.location.reload()
             }).catch((err) => {
                 console.log(err, "error");
             })

@@ -10,7 +10,7 @@ function User() {
     const getData = () => {
         try {
             httpFile.get("http://localhost:1000/findUser").then((res) => {
-                console.log(res, "responseeeeeeeeeeeeee")
+                // console.log(res, "responseeeeeeeeeeeeee")
                 setData(res.data.body)
             }).catch((error) => {
                 console.log(error, "error");
@@ -66,7 +66,7 @@ function User() {
                             <div className="card mt-3">
                                 <div className="d-flex mt-1">
                                     <input className="form-control" style={{ marginLeft: "50rem", marginRight: "2rem" }} type="search" placeholder="Search" aria-label="Search" />
-                                    <button type="button" className="btn btn-primary">Add</button>
+                                    <button type="button" className="btn btn-primary">search</button>
                                 </div>
 
                                 <table className="table">
@@ -81,8 +81,7 @@ function User() {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        {/* {console.log(data, "cnasldjb")} */}
+                                    <tbody>                                     
                                         {data?.map((e, key) => (
                                             <tr key={key}>
                                                 <td>{e?.name}</td>
@@ -111,6 +110,7 @@ function User() {
                                                         deleteHandler(e?._id)
                                                     }} className='btn btn-danger'>Delete</button>
                                                 </td>
+                                               
                                             </tr>
                                         ))}
                                     </tbody>

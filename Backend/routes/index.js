@@ -17,8 +17,8 @@ router.get("/findUser", controller.findUser)
 router.get("/findSingleUser/:id", controller.findSingleUser)
 router.put("/updateUser/:id", controller.updateUser)
 router.delete("/deleteUser/:id", controller.deleteUser)
-router.post("/logout", auth, controller.logout)
-router.post("/changePassword", auth, controller.changePassword)
+router.put("/logout/:id",controller.logout)
+router.put("/changePassword/:id", controller.changePassword)
 
 ///////////category controller//////
 router.post("/createCategory", controllers.createCategory)

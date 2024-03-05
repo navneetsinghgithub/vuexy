@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { httpFile } from '../../config/axiosConfig'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Navbar() {
-
+const navigate = useNavigate()
     const adminInfo = JSON.parse(localStorage.getItem("token"))
-    // console.log(adminInfo, "adminInfo");
-   
+ 
+
     const [data, setData] = useState()
     const getData = () => {
         try {
             httpFile.get(`/getAdminProfile/${adminInfo._id}`).then((res) => {
-                // console.log(res,"jhhhhhhhh");
+                
                 setData(res.data.body)
+            
             }).catch((err) => {
                 console.log(err, "err");
             })
@@ -22,7 +23,13 @@ function Navbar() {
     }
     useEffect(() => {
         getData()
-    },[])
+    }, [])
+
+  
+const handleNavigate=()=>{
+localStorage.clear()
+navigate("/")
+}
 
 
 
@@ -30,7 +37,6 @@ function Navbar() {
     return (
         <nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
             <div className="navbar-container d-flex content">
-                {/* {splitValue && <span>Split Value: {splitValue}</span>} */}
                 <div className="bookmark-wrapper d-flex align-items-center">
                     <ul className="nav navbar-nav d-xl-none">
                         <li className="nav-item">
@@ -39,7 +45,7 @@ function Navbar() {
                             </a>
                         </li>
                     </ul>
-                    {/* {splitValue && <span>Split Value: {splitValue}</span>} */}
+
                     <ul className="nav navbar-nav bookmark-icons">
                     </ul>
                     <ul className="nav navbar-nav">
@@ -74,17 +80,18 @@ function Navbar() {
                             className="dropdown-menu dropdown-menu-end"
                             aria-labelledby="dropdown-user"
                         >
-                            <Link to={`/profile/${adminInfo?._id}`}>  <a className="dropdown-item" href="page-profile.html">
+                            <Link to={`/profile/${adminInfo?._id}`}>     <a className="dropdown-item" >
                                 <i className="me-50" data-feather="user" /> Profile
-                            </a></Link> 
+                            </a>   </Link>
 
                             <div className="dropdown-divider" />
+                            <Link to={`/changepassword/${adminInfo?._id}`}>
                             <a className="dropdown-item" href="page-account-settings.html">
                                 <i className="me-50" data-feather="settings" /> Change Password
-                            </a>
+                            </a></Link>
 
-                            <a className="dropdown-item" href="page-auth-login-v2.html">
-                                <i className="me-50" data-feather="power" /> Logout
+                            <a onClick={handleNavigate}    className="dropdown-item">
+                                <i  className="me-50" data-feather="power" /> Logout
                             </a>
                         </div>
                     </li>

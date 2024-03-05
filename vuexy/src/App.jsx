@@ -11,6 +11,7 @@ import TermCondition from "./component/Cms/TermCondition"
 import PrivacyPolicy from "./component/Cms/PrivacyPolicy"
 import AboutUs from "./component/Cms/AboutUs"
 import Profile from "./component/Profile"
+import ChangePassword from "./component/ChangePassword"
 
 function App() {
   return (
@@ -24,17 +25,20 @@ function App() {
           <Route path="/termsCondition" element={<TermCondition />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/aboutUs" element={<AboutUs />} />
+
           {/* /////profile////// */}
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/changepassword/:id" element={<ChangePassword />} />
 
 
 
-          <Route path="/add" element={<AddUser />} />
+
+       
 
 
         </Route>
         <Route path="/footer" element={<Footer />} />
-
+        <Route path="/add" element={<AddUser />} />
       </Routes>
 
 

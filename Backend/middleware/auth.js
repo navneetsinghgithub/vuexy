@@ -5,13 +5,12 @@ const userModel = require("../Model/userModel")
 module.exports = {
     auth: async (req, res, next) => {
         let token
-        console.log("object")
+
         if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
             try {
                 const token = req.headers.authorization.split(" ")[1]
-                // console.log(token,"tokkkkkkkkkkkkkkkkkk");
                 const decode = await jwt.verify(token, secretKey)
-                // console.log(jwt.verify,"verrrrrrrrrrr");
+             
                 const user = await userModel.findByIdAndUpdate({
                     _id: decode._id
                 }, { logintime: decode.iat }, { new: true })
@@ -37,3 +36,15 @@ module.exports = {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

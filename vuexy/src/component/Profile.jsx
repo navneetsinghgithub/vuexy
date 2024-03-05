@@ -26,7 +26,7 @@ function Profile() {
 
 
     const handleNavigate = () => {
-        navigate("/edit")
+        navigate(`/edit/${adminData?._id}`)
     }
 
     return (
@@ -39,9 +39,6 @@ function Profile() {
                         <div className="content-header-left col-md-9 col-12 mb-2">
                             <div className="row breadcrumbs-top">
                                 <div className="col-12">
-                                    {/* <h2 className="content-header-title float-start mb-0">
-                  Admin all Details
-                </h2> */}
                                 </div>
                             </div>
                         </div>
@@ -70,10 +67,7 @@ function Profile() {
                                                     alt="avatar img"
                                                 />
                                             </a>
-
-                                            {/*/ upload and reset button */}
                                         </div>
-                                        {/*/ header section */}
                                         <form className="validate-form mt-2">
                                             <div className="row">
                                                 <div className="col-12 col-sm-6">
@@ -111,14 +105,14 @@ function Profile() {
 
                                                 <div className="col-12 col-sm-6">
                                                     <div className="mb-1">
-                                                        <label className="form-label" htmlFor="account-e-mail">
+                                                        <label className="form-label" htmlFor="phone">
                                                             Phone
                                                         </label>
                                                         <input
                                                             type="text"
                                                             className="form-control"
-                                                            value={adminData?.email || ''}
-                                                            id="account-e-mail"
+                                                            value={adminData?.phone || ''}
+                                                            id="phone"
                                                             name="phone"
                                                             readOnly
                                                         />

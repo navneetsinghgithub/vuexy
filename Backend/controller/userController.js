@@ -185,7 +185,7 @@ module.exports = {
 
     findUser: async (req, res) => {
         try {
-            const find = await userModel.find()
+            const find = await userModel.find({ role: 1 })
             return res.json({
                 success: true,
                 status: 200,
@@ -270,13 +270,24 @@ module.exports = {
 
     changePassword: async (req, res) => {
         try {
-            const data = await userModel.findOne({ _id: req.user._id })
-            const decryptPassword = await bcrypt.compare(req.body.newPassword, data.password)
+            const data = await userModel.findOne({ _id: req.params.id })
+            
+            const decryptPassword = await bcrypt.compare(req.body.password, data.password)
             if (decryptPassword == false) {
                 return res.json({
                     success: false,
                     status: 400,
                     message: "password does not match",
+                    body: {}
+                })
+            }
+
+
+            if (req.body.newPassword !== req.body.confirmPassword) {
+                return res.json({
+                    success: false,
+                    status: 400,
+                    message: "new password and confirm password does not match",
                     body: {}
                 })
             }
@@ -294,7 +305,7 @@ module.exports = {
             return res.json({
                 success: false,
                 status: 404,
-                message: "error"
+                message: error
             })
         }
     },
@@ -302,7 +313,7 @@ module.exports = {
     logout: async (req, res) => {
         try {
             const logout = await userModel.findByIdAndUpdate({
-                _id: req.user._id
+                _id: req.params.id
             }, { logintime: 0 }, { new: true })
             if (!logout) {
                 return res.json({
@@ -329,3 +340,4 @@ module.exports = {
     }
 
 }
+

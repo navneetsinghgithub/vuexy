@@ -28,15 +28,18 @@ function Login() {
                 return Error;
             }
             httpFile.post("/login", data).then((res) => {
-                console.log(res.data,"uuuuuuuuuuu");
-                if(res.data.status !=400){
+                if (res.data.body.role == 0) {
+                    if (res.data.status != 400) {
+                        setdata(res.data.body)
+                        localStorage.setItem("token", JSON.stringify(res.data.body))
+                        navigate("/dash")
+                    }
                     setdata(res.data.body)
-                    localStorage.setItem("token",JSON.stringify(res.data.body))
-                    navigate("/dash")
                 }
-               else{
-                alert(res.data.message)
-               }
+
+                else {
+                    alert("email or password not correct")
+                }
 
             }).catch((error) => {
                 console.log(error, "error");
@@ -100,7 +103,7 @@ function Login() {
                                                         placeholder="············"
                                                         aria-describedby="login-password"
                                                         tabIndex={1}
-                                                    />                                                 
+                                                    />
                                                     <span className="input-group-text cursor-pointer">
                                                         <i data-feather="eye" />
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
