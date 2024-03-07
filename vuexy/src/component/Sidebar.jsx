@@ -92,7 +92,7 @@ function Sidebar() {
                                         </g>
                                     </svg>
                                 </span>
-                                <h2 className="brand-text">Vuexy</h2>
+                                <h2 className="brand-text">Project</h2>
                             </a>
                         </li>
                         <li className="nav-item nav-toggle">
@@ -174,6 +174,28 @@ function Sidebar() {
                                 </Link>
                             </a>
                         </li>
+                        <li className=" nav-item">
+                            <a className="d-flex align-items-center" href="/user">
+                                <i data-feather="mail" />
+                                <Link to={"/category"} className="menu-title text-truncate">
+                                    <span data-i18n="Email">
+                                        Category
+                                    </span>
+                                </Link>
+                            </a>
+                        </li>
+
+                        <li className=" nav-item">
+                            <a className="d-flex align-items-center" href="/user">
+                                <i data-feather="mail" />
+                                <Link to={"/subCategory"} className="menu-title text-truncate">
+                                    <span data-i18n="Email">
+                                       SubCategory
+                                    </span>
+                                </Link>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>

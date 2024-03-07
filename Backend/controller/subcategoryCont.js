@@ -48,7 +48,7 @@ module.exports = {
 
     findSubCategory: async (req, res) => {
         try {
-            const data = await subCategoryModel.find()
+            const data = await subCategoryModel.find().populate("categoryId")
 
             return res.json({
                 success: true,
@@ -88,6 +88,11 @@ module.exports = {
 
     updateSubCategory: async (req, res) => {
         try {
+            if (req.files && req.files.image.name) {
+                const image = req.files.image;
+                if (image) req.body.image = imageupload(image, "userImage");
+            }
+
             const data = await subCategoryModel.findByIdAndUpdate({
                 _id: req.params.id
             }, { name: req.body.name, image: req.body.image }, { new: true })

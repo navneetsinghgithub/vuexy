@@ -84,6 +84,10 @@ module.exports = {
     
     updateCategory: async (req, res) => {
         try {
+            if (req.files && req.files.image.name) {
+                const image = req.files.image;
+                if (image) req.body.image = imageupload(image, "userImage");
+            }
             const data = await categoryModel.findByIdAndUpdate({
                 _id: req.params.id
             }, { name: req.body.name, image: req.body.image }, { new: true })

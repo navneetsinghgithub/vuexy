@@ -271,7 +271,7 @@ module.exports = {
     changePassword: async (req, res) => {
         try {
             const data = await userModel.findOne({ _id: req.params.id })
-            
+
             const decryptPassword = await bcrypt.compare(req.body.password, data.password)
             if (decryptPassword == false) {
                 return res.json({
@@ -335,6 +335,27 @@ module.exports = {
                 success: false,
                 status: 400,
                 message: "error",
+            })
+        }
+    },
+
+    status: async (req, res) => {
+        try {
+            const status = await userModel.findByIdAndUpdate({
+                _id: req.params.id
+            }, { status: req.body.status }, { new: true })
+            return res.json({
+                success: true,
+                status: 200,
+                message: "status ",
+                body: status
+            })
+        } catch (error) {
+            console.log(error, "error");
+            return res.json({
+                success: false,
+                status: 400,
+                message: "error"
             })
         }
     }

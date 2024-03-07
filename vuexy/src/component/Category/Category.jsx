@@ -1,19 +1,17 @@
-
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Swal from "sweetalert2"
-import { httpFile } from '../../config/axiosConfig'
+import { httpFile } from '../../../config/axiosConfig';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
-function User() {
-    const [data, setData] = useState([])
+function Category() {
+    const [data, setData] = useState()
 
     const getData = () => {
         try {
-            httpFile.get("/findUser").then((res) => {
-                // console.log(res, "responseeeeeeeeeeeeee")
+            httpFile.get("/findCategory").then((res) => {
                 setData(res.data.body)
-            }).catch((error) => {
-                console.log(error, "error");
+            }).catch((err) => {
+                console.log(err, "err");
             })
         } catch (error) {
             console.log(error, "error");
@@ -23,8 +21,7 @@ function User() {
         getData()
     }, [])
 
-
-    const deleteHandler = (id) => {
+    const deletehandler = (id) => {
         try {
             Swal.fire({
                 title: "Are you sure?",
@@ -36,10 +33,9 @@ function User() {
                 confirmButtonText: "Yes, delete it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await httpFile.delete(`http://localhost:1000/deleteUser/${id}`).then((res) => {
+                    await httpFile.delete(`/deleteCategory/${id}`).then((res) => {
                         getData()
                     })
-
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your file has been deleted.",
@@ -47,9 +43,8 @@ function User() {
                     });
                 }
             });
-
         } catch (error) {
-            console.log(error)
+
         }
     }
 
@@ -64,6 +59,11 @@ function User() {
                     <div className="content-body">
                         <section className="app-user-list">
                             <div className="card mt-3">
+                                <div className="d-flex mt-0"  >
+                                    <Link to={"/addcategory"}><button type="submit" className="btn btn-primary me-0">
+                                        Add user
+                                    </button></Link>
+                                </div>
                                 <div className="d-flex mt-1">
                                     <input className="form-control" style={{ marginLeft: "50rem", marginRight: "2rem" }} type="search" placeholder="Search" aria-label="Search" />
                                     <button type="button" className="btn btn-primary">search</button>
@@ -73,20 +73,14 @@ function User() {
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
                                             <th>Image</th>
-                                            <th>Role</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>                                     
+                                    <tbody>
                                         {data?.map((e, key) => (
                                             <tr key={key}>
                                                 <td>{e?.name}</td>
-                                                <td>{e?.email}</td>
-                                                <td>{e?.phone}</td>
                                                 <td>
                                                     <div className="rounded- overflow  border-1 border-white">
                                                         <img height={"50px"} width={"70px"}
@@ -101,16 +95,17 @@ function User() {
                                                         />
                                                     </div>
                                                 </td>
-                                                <td>{e?.role}</td>
-                                                <td>{e?.status}</td>
+
                                                 <td>
-                                                    <Link to={`/edit/${e?._id}`}><button type='button' className='btn btn-primary'>Edit</button></Link>
+                                                    <Link to={`/categoryview/${e?._id}`}> <button type='button' className='btn btn-success'>View</button></Link>
+                                                    &nbsp;
+                                                    <Link to={`/categoryedit/${e?._id}`}><button type='button' className='btn btn-primary'>Edit</button></Link>
                                                     &nbsp;
                                                     <button type='submit' onClick={() => {
-                                                        deleteHandler(e?._id)
+                                                        deletehandler(e?._id)
                                                     }} className='btn btn-danger'>Delete</button>
                                                 </td>
-                                               
+
                                             </tr>
                                         ))}
                                     </tbody>
@@ -123,21 +118,7 @@ function User() {
             </div>
 
         </>
-
     )
 }
 
-export default User
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default Category

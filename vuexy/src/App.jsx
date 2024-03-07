@@ -12,6 +12,13 @@ import PrivacyPolicy from "./component/Cms/PrivacyPolicy"
 import AboutUs from "./component/Cms/AboutUs"
 import Profile from "./component/Profile"
 import ChangePassword from "./component/ChangePassword"
+import Category from "./component/Category/Category"
+import SubCategory from "./component/Category/SubCategory"
+import CategoryEdit from "./component/Category/CategoryEdit"
+import CategoryView from "./component/Category/CategoryView"
+import AddCategory from "./component/Category/AddCategory"
+import SubCategoryView from "./component/Category/SubCategoryView"
+import SubcategoryCreate from "./component/Category/SubcategoryCreate"
 
 function App() {
   return (
@@ -22,18 +29,32 @@ function App() {
           <Route path="/dash" element={<Dashboard />} />
           <Route path="/user" element={<User />} />
           <Route path="/edit/:id" element={<Updatee />} />
+
+          {/* //////CMS///// */}
           <Route path="/termsCondition" element={<TermCondition />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/aboutUs" element={<AboutUs />} />
 
-          {/* /////profile////// */}
+          {/* ///// Admin  profile////// */}
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/changepassword/:id" element={<ChangePassword />} />
 
+          {/* //////////Category///////// */}
+          <Route path="/category" element={<Category />} />
+          <Route path="/addcategory" element={<AddCategory />} />
+          <Route path="/categoryedit/:id" element={<CategoryEdit />} />
+          <Route path="/categoryview/:id" element={<CategoryView />} />
+
+          {/* ///////Sub Category/////// */}
+          <Route path="/SubCategory" element={<SubCategory />} />
+          <Route path="/SubcategoryCreate" element={<SubcategoryCreate />} />
+          <Route path="/SubCategoryView/:id" element={<SubCategoryView />} />
 
 
 
-       
+
+
+
 
 
         </Route>

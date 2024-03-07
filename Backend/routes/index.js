@@ -19,6 +19,7 @@ router.put("/updateUser/:id", controller.updateUser)
 router.delete("/deleteUser/:id", controller.deleteUser)
 router.put("/logout/:id",controller.logout)
 router.put("/changePassword/:id", controller.changePassword)
+router.put("/status/:id",controller.status)
 
 ///////////category controller//////
 router.post("/createCategory", controllers.createCategory)

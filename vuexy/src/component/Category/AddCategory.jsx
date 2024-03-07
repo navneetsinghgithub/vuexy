@@ -1,52 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { httpFile } from '../config/axiosConfig'
+import { httpFile } from '../../../config/axiosConfig';
+import { useNavigate } from 'react-router-dom';
 
-function Updatee() {
+function AddCategory() {
     const [data, setData] = useState()
 
-    const { id } = useParams()
     const navigate = useNavigate()
-
-    const handlechange = (e) => {
+   
+    const handlechange = ((e) => {      
         setData({ ...data, [e.target.name]: e.target.type === "file" ? e.target.files[0] : e.target.value })
-    }
-    const getSingleData = () => {
-        try {
-            httpFile.get(`/findSingleUser/${id}`, data).then((res) => {
-                setData(res.data.body)
-               
-            }).catch((error) => {
-                console.log(error, "error");
-            })
-        } catch (error) {
-            console.log(error, "error");
-        }
-    }
-    useEffect(() => {
-        getSingleData()
-    }, [])
+    })
 
-    const updateData = (e) => {
+    const addCategoryUser = (e) => {
         e.preventDefault()
         try {
-    httpFile.put(`/updateUser/${id}`, data, {
+            httpFile.post("/createCategory", data, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             }).then((res) => {
                 setData(res.data.body)
-                navigate("/user")
-                window.location.reload()
+                navigate("/category")
             }).catch((err) => {
-                console.log(err, "error");
+                console.log(err, "err");
             })
         } catch (error) {
             console.log(error, "error");
         }
     }
-
-
     return (
         <>
             <div class="app-content content">
@@ -61,16 +42,16 @@ function Updatee() {
                                         <div class="col-md-5 col-10 w-50">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h4 class="card-title">User Update Form</h4>
+                                                    <h4 class="card-title">Add Category Form</h4>
                                                 </div>
                                                 <div class="card-body">
-                                                    <form onChange={handlechange} onSubmit={updateData}>
+                                                    <form onSubmit={addCategoryUser} onChange={handlechange} >
                                                         <div className="row">
                                                             <div className="col-12">
                                                                 <div className="mb-1 row">
                                                                     <div className="col-sm-3 w-10   ">
                                                                         <label className="col-form-label" for="name">
-                                                                            First Name
+                                                                            Name
                                                                         </label>
                                                                     </div>
                                                                     <div className="col-sm-9">
@@ -79,33 +60,11 @@ function Updatee() {
                                                                             id="name"
                                                                             className="form-control"
                                                                             name="name"
-                                                                            value={data?.name}
-                                                                            placeholder="First Name"
+                                                                            placeholder=" Name"
                                                                         />
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-                                                            <div className="col-12">
-                                                                <div className="mb-1 row">
-                                                                    <div className="col-sm-3">
-                                                                        <label className="col-form-label" for="phone">
-                                                                            Phone
-                                                                        </label>
-                                                                    </div>
-                                                                    <div className="col-sm-9">
-                                                                        <input
-                                                                            type="number"
-                                                                            id="Phone"
-                                                                            className="form-control"
-                                                                            name="phone"
-                                                                            value={data?.phone}
-                                                                            placeholder="Phone"
-                                                                        />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
                                                             <div className="col-12">
                                                                 <div className="mb-1 row">
                                                                     <div className="col-sm-3">
@@ -118,18 +77,17 @@ function Updatee() {
                                                                             type="file"
                                                                             id="file"
                                                                             className="form-control"
-                                                                            // value={data?.image}
                                                                             name="image"
                                                                         />
                                                                     </div>
                                                                 </div>
                                                             </div>
 
+
                                                             <div className="col-sm-9 offset-sm-3">
                                                                 <button type="submit" className="btn btn-primary me-1">
-                                                                    Update
+                                                                    Submit
                                                                 </button>
-
                                                             </div>
                                                         </div>
                                                     </form>
@@ -144,9 +102,8 @@ function Updatee() {
                 </div>
             </div>
 
-
         </>
     )
 }
 
-export default Updatee
+export default AddCategory

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { httpFile } from '../../config/axiosConfig'
+import Swal from 'sweetalert2'
 
 
 
@@ -32,22 +33,21 @@ function Login() {
                     if (res.data.status != 400) {
                         setdata(res.data.body)
                         localStorage.setItem("token", JSON.stringify(res.data.body))
-                        navigate("/dash")
-                    }
-                    setdata(res.data.body)
+                        navigate("/dash")                       
+                    }                                
                 }
-
                 else {
                     alert("email or password not correct")
                 }
-
             }).catch((error) => {
                 console.log(error, "error");
             })
         } catch (error) {
-            console.log(error, "error");
+            console.log(error, "error");         
         }
+      
     }
+ 
 
     return (
         <>
@@ -59,7 +59,6 @@ function Login() {
                     <div className="content-body">
                         <div className="auth-wrapper auth-v2">
                             <div className="auth-inner row m-0">
-
                                 <div className="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                                     <div className="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
                                         <h2 className="card-title fw-bold mb-1">Welcome to Vuexy! 👋</h2>
@@ -67,13 +66,10 @@ function Login() {
                                             Please sign-in to your account and start the adventure
                                         </p>
                                         <form onSubmit={getdata} onChange={handlechange}>
-
                                             <div className="mb-1">
                                                 <label className="form-label" htmlFor="login-email">
-
                                                     Email
                                                 </label>
-
                                                 <input
                                                     className="form-control"
                                                     id=" login-email"
@@ -83,6 +79,7 @@ function Login() {
                                                     aria-describedby="login-email"
                                                     autofocus=""
                                                     tabIndex={1}
+                                                required
                                                 />
                                                 <p className="m-0 error_text" style={{ color: "red" }}>
                                                     {validation}
@@ -103,6 +100,7 @@ function Login() {
                                                         placeholder="············"
                                                         aria-describedby="login-password"
                                                         tabIndex={1}
+                                                        required
                                                     />
                                                     <span className="input-group-text cursor-pointer">
                                                         <i data-feather="eye" />

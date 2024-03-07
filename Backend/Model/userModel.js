@@ -15,11 +15,11 @@ const usersSchema = new mongoose.Schema({
     role:
         { type: Number, enum: [0, 1], default: 1 }, // admin = 0 , user = 1 
     status:
-        { type: Number, enum: [0, 1] },//  active= 0 , inactive = 1 
+        { type: Number, enum: [0, 1] , default:0 },//  active= 0 , inactive = 1 
     token:
         { type: String },
     logintime:
-        { type: Number }
+        { type: Number },       
 
 }, { timestamps: true })
 

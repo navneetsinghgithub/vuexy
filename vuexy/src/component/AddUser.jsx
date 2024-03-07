@@ -129,7 +129,6 @@ function AddUser() {
                                                                 <button type="submit" className="btn btn-primary me-1">
                                                                     Add user
                                                                 </button>
-
                                                             </div>
                                                         </div>
                                                     </form>
