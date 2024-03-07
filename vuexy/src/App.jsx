@@ -19,6 +19,7 @@ import CategoryView from "./component/Category/CategoryView"
 import AddCategory from "./component/Category/AddCategory"
 import SubCategoryView from "./component/Category/SubCategoryView"
 import SubcategoryCreate from "./component/Category/SubcategoryCreate"
+import EditSubCategory from "./component/Category/EditSubCategory"
 
 function App() {
   return (
@@ -47,7 +48,8 @@ function App() {
 
           {/* ///////Sub Category/////// */}
           <Route path="/SubCategory" element={<SubCategory />} />
-          <Route path="/SubcategoryCreate" element={<SubcategoryCreate />} />
+          <Route path="/subCategoryCreate" element={<SubcategoryCreate />} />
+          <Route path="/editSubCategory/:id" element={<EditSubCategory/>} />
           <Route path="/SubCategoryView/:id" element={<SubCategoryView />} />
 
 

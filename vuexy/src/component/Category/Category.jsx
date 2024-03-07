@@ -61,7 +61,7 @@ function Category() {
                             <div className="card mt-3">
                                 <div className="d-flex mt-0"  >
                                     <Link to={"/addcategory"}><button type="submit" className="btn btn-primary me-0">
-                                        Add user
+                                        Add Category
                                     </button></Link>
                                 </div>
                                 <div className="d-flex mt-1">

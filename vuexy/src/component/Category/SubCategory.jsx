@@ -5,14 +5,13 @@ import Swal from 'sweetalert2';
 
 function SubCategory() {
   const [data, setData] = useState([])
-  
-  
+
+
 
   const getData = () => {
     try {
       httpFile.get(`/findSubCategory`, data).then((res) => {
         setData(res.data.body)
-        console.log(res.data.body,"ttttttttttttt");
       }).catch((err) => {
         console.log(err, "err");
       })
@@ -26,30 +25,30 @@ function SubCategory() {
 
   const deletehandler = (id) => {
     try {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                await httpFile.delete(`/deleteSubCategory/${id}`).then((res) => {
-                    getData()
-                })
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-            }
-        });
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await httpFile.delete(`/deleteSubCategory/${id}`).then((res) => {
+            getData()
+          })
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        }
+      });
     } catch (error) {
 
     }
-}
+  }
 
   return (
     <>
@@ -64,13 +63,18 @@ function SubCategory() {
               <div className="card mt-3">
                 <div className="col-sm-9 offset-sm-3">
                 </div>
+
+                <div className="d-flex mt-0"  >
+                  <Link to={"/subCategoryCreate"}><button type="submit" className="btn btn-primary me-0">
+                    Add Sub Category
+                  </button></Link>
+                </div>
                 <div className="d-flex mt-1">
                   <input className="form-control" style={{ marginLeft: "50rem", marginRight: "2rem" }} type="search" placeholder="Search" aria-label="Search" />
                   <button type="button" className="btn btn-primary">search</button>
                 </div>
 
 
-                <Link to={"/SubcategoryCreate"}><button>Add</button></Link>
 
                 <table className="table">
                   <thead>
@@ -102,14 +106,14 @@ function SubCategory() {
                         </td>
 
                         <td>
-                      <Link to={`/SubCategoryView/${e?._id}`}>   <button type='button' className='btn btn-success'>View</button></Link> 
+                          <Link to={`/SubCategoryView/${e?._id}`}>   <button type='button' className='btn btn-success'>View</button></Link>
                           &nbsp;
-                          <button type='button' className='btn btn-primary'>Edit</button>
+                        <Link to={`/editSubCategory/${e?._id}`}><button type='button' className='btn btn-primary'>Edit</button></Link>
                           &nbsp;
-                          <button type='submit' onClick={()=>{
+                          <button type='submit' onClick={() => {
                             deletehandler(e?._id)
                           }}
-                           className='btn btn-danger'>Delete</button>
+                            className='btn btn-danger'>Delete</button>
 
 
                         </td>

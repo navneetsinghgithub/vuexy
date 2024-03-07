@@ -30,10 +30,6 @@ const handleNavigate=()=>{
 localStorage.clear()
 navigate("/")
 }
-
-
-
-
     return (
         <nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
             <div className="navbar-container d-flex content">

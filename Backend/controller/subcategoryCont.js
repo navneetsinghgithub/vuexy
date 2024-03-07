@@ -95,7 +95,7 @@ module.exports = {
 
             const data = await subCategoryModel.findByIdAndUpdate({
                 _id: req.params.id
-            }, { name: req.body.name, image: req.body.image }, { new: true })
+            }, { name: req.body.name,categoryId:req.body.categoryId, image: req.body.image }, { new: true })
 
             return res.json({
                 success: true,
