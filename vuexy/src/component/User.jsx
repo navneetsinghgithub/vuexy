@@ -6,6 +6,7 @@ import { httpFile } from '../../config/axiosConfig'
 
 function User() {
     const [data, setData] = useState([])
+    const isLoged = JSON.parse(localStorage.getItem("adminInfo") ? true : false)
 
     const getData = () => {
         try {
@@ -53,6 +54,42 @@ function User() {
         }
     }
 
+    const handleChangeUpdateStatus = (e, id) => {
+        const value = data?.map((u) => {
+            if (u._id == id) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Status Updated Succesfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                return { ...u, status: e.target.checked };
+            }
+            return u;
+        });
+        console.log(value, "value")
+        value && setData(value);
+        if (data && value) {
+
+            const user = value?.filter((u) => u._id === id)[0];
+            httpFile
+                .put(`/status/${id}`, user)
+                .then((res) => { })
+                .catch((er) =>
+                    console.log(
+                        er.response && er.response.data.message
+                            ? er.response.data.message
+                            : er.message
+                    )
+                );
+
+        }
+    };
+
+
+
+
     return (
         <>
             <div className="app-content content ">
@@ -81,7 +118,7 @@ function User() {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>                                     
+                                    <tbody>
                                         {data?.map((e, key) => (
                                             <tr key={key}>
                                                 <td>{e?.name}</td>
@@ -102,15 +139,35 @@ function User() {
                                                     </div>
                                                 </td>
                                                 <td>{e?.role}</td>
-                                                <td>{e?.status}</td>
                                                 <td>
+                                                    <div className="d-flex justify-content-start">
+                                                        <div className="form-group">
+                                                            <label className="custom-switch mt-2">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    name="status"
+                                                                    className="form-check-input"
+                                                                    checked={e?.status}
+                                                                    onChange={(type) =>
+                                                                        handleChangeUpdateStatus(type, e?._id)
+                                                                    }
+                                                                />
+                                                                <span className="custom-switch-indicator"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <Link to={`/view/${e?._id}`}><button type='button' className='btn btn-primary'>View</button></Link>
+                                                    &nbsp;
                                                     <Link to={`/edit/${e?._id}`}><button type='button' className='btn btn-primary'>Edit</button></Link>
                                                     &nbsp;
                                                     <button type='submit' onClick={() => {
                                                         deleteHandler(e?._id)
                                                     }} className='btn btn-danger'>Delete</button>
                                                 </td>
-                                               
+
                                             </tr>
                                         ))}
                                     </tbody>

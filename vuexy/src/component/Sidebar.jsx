@@ -145,6 +145,16 @@ function Sidebar() {
                             </a>
                         </li>
                         <li className=" nav-item">
+                            <a className="d-flex align-items-center" href="/user">
+                                <i data-feather="mail" />
+                                <Link to={"/cusineTable"} className="menu-title text-truncate">
+                                    <span data-i18n="Email">
+                                        Cuisine TAble
+                                    </span>
+                                </Link>
+                            </a>
+                        </li>
+                        <li className=" nav-item">
                             <a className="d-flex align-items-center" href="app-email.html">
                                 <i data-feather="mail" />
                                 <Link to={"/termsCondition"} className="menu-title text-truncate">

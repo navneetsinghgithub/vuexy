@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { httpFile } from '../../config/axiosConfig'
-import Swal from 'sweetalert2'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -33,9 +34,13 @@ function Login() {
                     if (res.data.status != 400) {
                         setdata(res.data.body)
                         localStorage.setItem("token", JSON.stringify(res.data.body))
-                        navigate("/dash")                       
-                    }                                
+                        navigate("/dash")
+                        toast.success("Succesfully logged in")
+                     
+                    }
                 }
+
+
                 else {
                     alert("email or password not correct")
                 }
@@ -43,11 +48,12 @@ function Login() {
                 console.log(error, "error");
             })
         } catch (error) {
-            console.log(error, "error");         
+            console.log(error, "error");
         }
-      
+
     }
- 
+
+
 
     return (
         <>
@@ -79,7 +85,7 @@ function Login() {
                                                     aria-describedby="login-email"
                                                     autofocus=""
                                                     tabIndex={1}
-                                                required
+                                                    required
                                                 />
                                                 <p className="m-0 error_text" style={{ color: "red" }}>
                                                     {validation}

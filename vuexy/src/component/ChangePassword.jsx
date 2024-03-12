@@ -37,8 +37,6 @@ function ChangePassword() {
             console.log(error, "error");
         }
     }
-    
-
 
     return (
         <>

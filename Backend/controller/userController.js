@@ -182,7 +182,6 @@ module.exports = {
         }
     },
 
-
     findUser: async (req, res) => {
         try {
             const find = await userModel.find({ role: 1 })

@@ -42,5 +42,20 @@
 } */
 
 
+.custom-toggle-button {
+  /* Add general styling here */
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.custom-toggle-button.active {
+  background-color: green;
+  color: white;
+}
+
+.custom-toggle-button.inactive {
+  background-color: red;
+  color: white;
+}
 
 

@@ -61,7 +61,7 @@ function Updatee() {
                                         <div class="col-md-5 col-10 w-50">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h4 class="card-title">User Update Form</h4>
+                                                    <h4 class="card-title"> Update Form</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     <form onChange={handlechange} onSubmit={updateData}>
