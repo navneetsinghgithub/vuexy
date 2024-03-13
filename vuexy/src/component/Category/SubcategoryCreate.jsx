@@ -192,9 +192,6 @@ function SubcategoryCreate() {
         }
     }
 
-
-
-
     return (
         <>
             <div class="app-content content">

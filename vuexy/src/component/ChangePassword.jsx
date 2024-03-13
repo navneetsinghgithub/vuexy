@@ -29,7 +29,7 @@ function ChangePassword() {
                 // return
                 setData(res.data.body)
                 
-                navigate(`/user`)
+                navigate(`/cusineTables`)
             }).catch((err) => {
                 console.log(err, "err");
             })

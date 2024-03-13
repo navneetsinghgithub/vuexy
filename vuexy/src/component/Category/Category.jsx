@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { httpFile } from '../../../config/axiosConfig';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import MUIDataTable from 'mui-datatables';
 
 function Category() {
-    const [data, setData] = useState()
+    const [dataa, setData] = useState()
 
     const getData = () => {
         try {
@@ -47,6 +48,74 @@ function Category() {
 
         }
     }
+    const columns = ["S.No.",
+        "Name",
+        "Image",
+        "Action"];
+    let finalArray = [];
+    if (dataa && Array.isArray(dataa)) {
+        for (let [index, data] of dataa?.entries()) {
+            let img = (
+                <img height={"50px"} width={"70px"}
+                    className="img-fluid rounded mb-100"
+                    src={
+                        data?.image !== ""
+                            ? `http://localhost:1000/images/userImage/${data?.image
+                            }`
+                            : ``
+                    }
+                    alt="avatar img"
+                />
+            );
+            let action = (
+                <div
+                    className="d-flex justify-content-start align-items-center gap-2"
+                    style={{
+                        gap: "5px",
+                        justifyContent: "center",
+                    }}
+                >
+                    <Link
+                        to={`/categoryview/${data._id}`}
+                        className="btn  px-2 py-1  btn-outline-success">
+                        <span dangerouslySetInnerHTML={{ __html: feather.icons.eye.toSvg() }}></span>
+                        <i className="fas fa-eye"></i>
+                    </Link>
+
+                    <Link
+                        to={`/categoryedit/${data._id}`}                       
+                        className="btn  px-2 py-1  btn-outline-info">
+                        <span dangerouslySetInnerHTML={{ __html: feather.icons.edit.toSvg() }}></span>                  
+                        <i className="fas fa-pen"></i>
+                    </Link>
+                    <Link
+                        onClick={(e) => deletehandler(data?._id)}
+                        className="btn  px-2 py-1  btn-outline-danger">
+                        <span dangerouslySetInnerHTML={{ __html: feather.icons['trash-2'].toSvg() }}></span>
+                        <i className="fas fa-trash"></i>
+                    </Link>
+                </div>
+            );
+            var dataArray = [];
+            dataArray.push(index + 1);
+            dataArray.push(data?.name);
+            // dataArray.push(data?.lastName);
+            dataArray.push(img);
+            // dataArray.push(data?.countryCode.concat(-data?.phone));
+            dataArray.push(action);
+            finalArray.push(dataArray);
+        }
+    }
+    const data = finalArray;
+    const options = {
+        filterType: "checkbox",
+        selectableRows: "none",
+        filter: "false",
+        download: false,
+        print: false,
+        viewColumns: false,
+
+    };
 
     return (
         <>
@@ -56,64 +125,28 @@ function Category() {
                 <div className="content-wrapper container-xxl p-0">
                     <div className="content-header row">
                     </div>
-                    <div className="content-body">
-                        <section className="app-user-list">
-                            <div className="card mt-3">
-                                <div className="d-flex mt-0"  >
-                                    <Link to={"/addcategory"}><button type="submit" className="btn btn-primary me-0">
-                                        Add Category
-                                    </button></Link>
-                                </div>
-                                <div className="d-flex mt-1">
-                                    <input className="form-control" style={{ marginLeft: "50rem", marginRight: "2rem" }} type="search" placeholder="Search" aria-label="Search" />
-                                    <button type="button" className="btn btn-primary">search</button>
-                                </div>
+                    <div className="content-body"></div>
+                    <section className="section">
+                        <div
+                            className="section-header  rounded py-4 shadow"
+                            style={{
+                                marginTop: "-48px",
+                                padding: "17px",
+                                display: "flex",
+                                justifyContent: "space-between",
+                            }}
+                        >
+                            <h1> Category</h1>
+                            <Link
+                                to={`/addcategory`}
+                                className="btn btn-icon icon-left btn-primary shadow"
+                            >
+                                <i className="far fa-edit "></i> Add Category
+                            </Link>
+                        </div>
 
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {data?.map((e, key) => (
-                                            <tr key={key}>
-                                                <td>{e?.name}</td>
-                                                <td>
-                                                    <div className="rounded- overflow  border-1 border-white">
-                                                        <img height={"50px"} width={"70px"}
-                                                            className="img-fluid rounded mb-100"
-                                                            src={
-                                                                e?.image !== ""
-                                                                    ? `http://localhost:1000/images/userImage/${e?.image
-                                                                    }`
-                                                                    : ``
-                                                            }
-                                                            alt="avatar img"
-                                                        />
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <Link to={`/categoryview/${e?._id}`}> <button type='button' className='btn btn-success'>View</button></Link>
-                                                    &nbsp;
-                                                    <Link to={`/categoryedit/${e?._id}`}><button type='button' className='btn btn-primary'>Edit</button></Link>
-                                                    &nbsp;
-                                                    <button type='submit' onClick={() => {
-                                                        deletehandler(e?._id)
-                                                    }} className='btn btn-danger'>Delete</button>
-                                                </td>
-
-                                            </tr>
-                                        ))}
-                                    </tbody>
-
-                                </table>
-                            </div>
-                        </section>
-                    </div>
+                        <MUIDataTable data={data} columns={columns} options={options} />
+                    </section>
                 </div>
             </div>
 

@@ -20,8 +20,11 @@ import SubCategoryView from "./component/Category/SubCategoryView"
 import SubcategoryCreate from "./component/Category/SubcategoryCreate"
 import EditSubCategory from "./component/Category/EditSubCategory"
 import UserView from "./component/UserView"
-import { ToastContainer ,toast} from 'react-toastify';
-import CuisineTable from "./component/MuiDatatable/CuisineTable"
+import { ToastContainer, toast } from 'react-toastify';
+import CusineTables from "./component/MuiDatatable/CusineTables"
+import PageNotFound from "./component/PageNotFound"
+
+
 
 
 function App() {
@@ -36,14 +39,13 @@ function App() {
     <>
       <Routes>
         <Route index element={<Login />} />
-        {!adminInfo ? ""
-          : <Route path="/" element={<Layout />}>
+        {adminInfo?.token ?
+          <Route path="/" element={<Layout />}>
             <Route path="/dash" element={<Dashboard />} />
             <Route path="/user" element={<User />} />
             <Route path="/edit/:id" element={<Updatee />} />
             <Route path="/view/:id" element={<UserView />} />
-            <Route path="cusineTable" element={<CuisineTable/>}/>
-
+            <Route path="/cusineTables" element={<CusineTables />} />
 
             {/* //////CMS///// */}
             <Route path="/termsCondition" element={<TermCondition />} />
@@ -65,19 +67,13 @@ function App() {
             <Route path="/subCategoryCreate" element={<SubcategoryCreate />} />
             <Route path="/editSubCategory/:id" element={<EditSubCategory />} />
             <Route path="/SubCategoryView/:id" element={<SubCategoryView />} />
-
-
-
-
-
-
-
-
-          </Route>}
-
-        <Route path="/add" element={<AddUser />} />
+          </Route>
+          : <Route path="*" element={<PageNotFound />} />
+        }
+        <Route path="*" element={<PageNotFound />} />
+      
       </Routes>
-      <ToastContainer/>
+      <ToastContainer />
 
 
     </>

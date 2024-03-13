@@ -42,7 +42,7 @@ function Login() {
 
 
                 else {
-                    alert("email or password not correct")
+                    toast.error("Email Or Password Not Correct")
                 }
             }).catch((error) => {
                 console.log(error, "error");

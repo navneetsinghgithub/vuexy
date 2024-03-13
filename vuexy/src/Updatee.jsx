@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { httpFile } from '../config/axiosConfig'
+import { toast } from 'react-toastify'
 
 function Updatee() {
     const [data, setData] = useState()
@@ -36,8 +37,10 @@ function Updatee() {
                 }
             }).then((res) => {
                 setData(res.data.body)
-                navigate("/user")
+                navigate("/cusineTables")
+              
                 window.location.reload()
+                toast.success("Update Successfully profile")
             }).catch((err) => {
                 console.log(err, "error");
             })

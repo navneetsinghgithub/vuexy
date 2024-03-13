@@ -134,7 +134,7 @@ function Sidebar() {
                             <span data-i18n="Apps & Pages">Apps &amp; Pages</span>
                             <i data-feather="more-horizontal" />
                         </li>
-                        <li className=" nav-item">
+                        {/* <li className=" nav-item">
                             <a className="d-flex align-items-center" href="/user">
                                 <i data-feather="mail" />
                                 <Link to={"/user"} className="menu-title text-truncate">
@@ -143,13 +143,13 @@ function Sidebar() {
                                     </span>
                                 </Link>
                             </a>
-                        </li>
+                        </li> */}
                         <li className=" nav-item">
                             <a className="d-flex align-items-center" href="/user">
                                 <i data-feather="mail" />
-                                <Link to={"/cusineTable"} className="menu-title text-truncate">
+                                <Link to={"/cusineTables"} className="menu-title text-truncate">
                                     <span data-i18n="Email">
-                                        Cuisine TAble
+                                      User
                                     </span>
                                 </Link>
                             </a>
@@ -200,7 +200,7 @@ function Sidebar() {
                                 <i data-feather="mail" />
                                 <Link to={"/subCategory"} className="menu-title text-truncate">
                                     <span data-i18n="Email">
-                                       SubCategory
+                                        SubCategory
                                     </span>
                                 </Link>
                             </a>

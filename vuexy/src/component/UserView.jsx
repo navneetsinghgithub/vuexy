@@ -23,7 +23,7 @@ function UserView() {
     }, [])
 
     const handleNavigate = (() => {
-        navigate("/user")
+        navigate("/cusineTables")
     })
 
 

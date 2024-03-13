@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { httpFile } from '../../config/axiosConfig'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Navbar() {
     const navigate = useNavigate()
@@ -29,6 +30,7 @@ function Navbar() {
     const handleNavigate = () => {
         localStorage.clear()
         navigate("/")
+        toast.success("Successfully Logout")
     }
     return (
         <>
@@ -89,6 +91,7 @@ function Navbar() {
 
                                 <a onClick={handleNavigate} className="dropdown-item">
                                     <i className="me-50" data-feather="power" /> Logout
+                                    
                                 </a>
                             </div>
                         </li>
