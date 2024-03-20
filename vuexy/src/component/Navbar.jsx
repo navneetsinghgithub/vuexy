@@ -65,7 +65,7 @@ function Navbar() {
                                     <span className="user-status">Admin</span>
                                 </div>
                                 <img height={"50px"} width={"70px"}
-                                    className="img-fluid rounded mb-100"
+                                    className="rounded-circle mb-20"
                                     src={
                                         adminInfo?.image !== ""
                                             ? `http://localhost:1000/images/userImage/${data?.image
@@ -84,14 +84,14 @@ function Navbar() {
                                 </a>   </Link>
 
                                 <div className="dropdown-divider" />
-                                <Link to={`/changepassword/${adminInfo?._id}`}>
+                                <Link to={`/changPasswrd/${adminInfo?._id}`}>
                                     <a className="dropdown-item" href="page-account-settings.html">
                                         <i className="me-50" data-feather="settings" /> Change Password
                                     </a></Link>
 
                                 <a onClick={handleNavigate} className="dropdown-item">
                                     <i className="me-50" data-feather="power" /> Logout
-                                    
+
                                 </a>
                             </div>
                         </li>

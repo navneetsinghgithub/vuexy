@@ -92,7 +92,7 @@ function Sidebar() {
                                         </g>
                                     </svg>
                                 </span>
-                                <h2 className="brand-text">Project</h2>
+                              <Link to={"/dash"}>  <h2 className="brand-text">Project</h2></Link>
                             </a>
                         </li>
                         <li className="nav-item nav-toggle">

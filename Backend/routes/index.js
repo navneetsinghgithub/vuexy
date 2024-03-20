@@ -13,13 +13,13 @@ router.get("/getAdminProfile/:id", controller.getAdminProfile)
 router.put("/updateAdminProfile/:id", controller.updateAdminProfile)
 
 
-router.get("/findUser", controller.findUser)
+router.get("/findUser", auth, controller.findUser)
 router.get("/findSingleUser/:id", controller.findSingleUser)
 router.put("/updateUser/:id", controller.updateUser)
 router.delete("/deleteUser/:id", controller.deleteUser)
-router.put("/logout/:id",controller.logout)
+router.put("/logout/:id", controller.logout)
 router.put("/changePassword/:id", controller.changePassword)
-router.put("/status/:id",controller.status)
+router.put("/status/:id", controller.status)
 
 ///////////category controller//////
 router.post("/createCategory", controllers.createCategory)

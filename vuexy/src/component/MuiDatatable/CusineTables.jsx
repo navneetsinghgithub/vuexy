@@ -224,7 +224,7 @@ function CusineTables() {
                                 to={`/CuisineCreate`}
                                 className="btn btn-icon icon-left btn-primary shadow"
                             >
-                                <i className="far fa-edit "></i>Add Cuisine
+                                <i className="far fa-edit "></i>Add User
                             </Link>
                         </div>
 

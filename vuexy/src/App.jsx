@@ -10,7 +10,6 @@ import TermCondition from "./component/Cms/TermCondition"
 import PrivacyPolicy from "./component/Cms/PrivacyPolicy"
 import AboutUs from "./component/Cms/AboutUs"
 import Profile from "./component/Profile"
-import ChangePassword from "./component/ChangePassword"
 import Category from "./component/Category/Category"
 import SubCategory from "./component/Category/SubCategory"
 import CategoryEdit from "./component/Category/CategoryEdit"
@@ -23,6 +22,7 @@ import UserView from "./component/UserView"
 import { ToastContainer, toast } from 'react-toastify';
 import CusineTables from "./component/MuiDatatable/CusineTables"
 import PageNotFound from "./component/PageNotFound"
+import ChangPasswrd from "./component/ChangPasswrd"
 
 
 
@@ -54,7 +54,7 @@ function App() {
 
             {/* ///// Admin  profile////// */}
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/changepassword/:id" element={<ChangePassword />} />
+            <Route path="/changPasswrd/:id" element={<ChangPasswrd />} />
 
             {/* //////////Category///////// */}
             <Route path="/category" element={<Category />} />
@@ -71,7 +71,7 @@ function App() {
           : <Route path="*" element={<PageNotFound />} />
         }
         <Route path="*" element={<PageNotFound />} />
-      
+
       </Routes>
       <ToastContainer />
 

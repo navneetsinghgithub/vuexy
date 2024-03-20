@@ -269,6 +269,8 @@ module.exports = {
 
     changePassword: async (req, res) => {
         try {
+
+
             const data = await userModel.findOne({ _id: req.params.id })
 
             const decryptPassword = await bcrypt.compare(req.body.password, data.password)

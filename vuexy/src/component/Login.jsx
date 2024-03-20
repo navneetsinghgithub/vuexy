@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 function Login() {
+   
     const [data, setdata] = useState()
     const [validation, setValidation] = useState()
     const navigate = useNavigate()
@@ -39,8 +40,6 @@ function Login() {
                      
                     }
                 }
-
-
                 else {
                     toast.error("Email Or Password Not Correct")
                 }
