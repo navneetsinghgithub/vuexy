@@ -5,7 +5,6 @@ import Dashboard from "./component/Dashboard"
 import Login from "./component/Login"
 import User from "./component/User"
 import Updatee from "./Updatee"
-import AddUser from "./component/AddUser"
 import TermCondition from "./component/Cms/TermCondition"
 import PrivacyPolicy from "./component/Cms/PrivacyPolicy"
 import AboutUs from "./component/Cms/AboutUs"
@@ -31,7 +30,7 @@ function App() {
   const navigate = useNavigate()
   const adminInfo = JSON.parse(localStorage.getItem("token"))
   useEffect(() => {
-    if (!adminInfo) {
+    if (!adminInfo?.token) {
       navigate('/')
     }
   }, [navigate])

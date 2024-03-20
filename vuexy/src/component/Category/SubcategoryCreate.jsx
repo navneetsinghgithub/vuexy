@@ -56,35 +56,47 @@ function SubcategoryCreate() {
                     <div class="content-header row">
                         <div class="content-header-left">
                             <div class="row breadcrumbs-top">
-                                <section id="basic-horizontal-layouts">
-                                    <div class="row">
+                                <section id="basic-horizontal-layouts" className="mt-5">
+                                    <div class="row d-flex justify-content-center">
                                         <div class="col-md-5 col-10 w-50">
                                             <div class="card">
-                                                <form onChange={handlechange} onSubmit={handlesubmit}>
-                                                    <div class="card-header">
-                                                        <h4 class="card-title">Add Category</h4>
-                                                        <div>
-                                                            <div>
-                                                                <select name="categoryId" id="categoryId">
-                                                                    <option onChange={handleselectcate}>select</option>
-                                                                    {category?.map((e) => (
-                                                                        <option key={e._id} value={e?._id}>
-                                                                            {e?.name}
-                                                                        </option>
-                                                                    ))}
-                                                                </select>
-                                                            </div>
-                                                            <div>
-                                                                <label for="name">name</label>
-                                                                <input type="text" name="name" id="name"></input>
-                                                            </div>
-                                                            <div>
-                                                                <label for="image">image</label>
-                                                                <input type="file" name="image" id="file"></input>
+                                                <h2 className="p-2 pb-0 mb-0">Add Category</h2>
+                                                <form onSubmit={handlesubmit} onChange={handlechange}>
+                                                    <div>
+                                                        <select name="categoryId" id="categoryId">
+                                                            <option onChange={handleselectcate}>select</option>
+                                                            {category?.map((e) => (
+                                                                <option key={e._id} value={e?._id}>
+                                                                    {e?.name}
+                                                                </option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+                                                    <div class="row p-2">
+                                                        <div class="col-12">
+                                                            <div class="mb-1 row">
+                                                                <div class="col-sm-3 w-10   ">
+                                                                    <label class="col-form-label" for="name">Name</label></div>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" id="name" class="form-control" name="name" placeholder=" Name" />
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-12">
+                                                            <div class="mb-1 row">
+                                                                <div class="col-sm-3">
+                                                                    <label for="image" class="image">image</label>
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <input type="file" id="file" class="form-control" name="image" />
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-9 offset-sm-3">
+                                                            <button type="submit" class="btn btn-primary me-1">Submit</button>
+                                                        </div>
                                                     </div>
-                                                    <button type="submit">Submit</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -93,8 +105,8 @@ function SubcategoryCreate() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
 
         </>
     )

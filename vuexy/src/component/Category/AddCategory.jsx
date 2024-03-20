@@ -37,12 +37,12 @@ function AddCategory() {
                     <div class="content-header row">
                         <div class="content-header-left">
                             <div class="row breadcrumbs-top">
-                                <section id="basic-horizontal-layouts">
-                                    <div class="row">
+                                <section id="basic-horizontal-layouts" className='mt-5'>
+                                    <div class="row d-flex justify-content-center">
                                         <div class="col-md-5 col-10 w-50">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h4 class="card-title">Add Category Form</h4>
+                                                    <h4 class="card-title p-2 pb-0 mb-0">Add Category Form</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     <form onSubmit={addCategoryUser} onChange={handlechange} >

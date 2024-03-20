@@ -15,7 +15,7 @@ function PageNotFound() {
                         <p class="lead">
                             The page you're looking for doesn't exist.
                         </p>
-                    <Link to={"/dash"}><a href="index.html" class="btn btn-primary">Go Home</a></Link> 
+                    <a href="index.html" class="btn btn-primary">Go Home</a>
                     </div>
 
                 </div>

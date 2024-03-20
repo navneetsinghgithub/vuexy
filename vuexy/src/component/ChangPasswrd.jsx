@@ -99,7 +99,7 @@ function ChangPasswrd() {
                 <div className="content-overlay" />
                 <div className="header-navbar-shadow" />
                 <div className="content-wrapper container-xxl p-0">
-                    <h2 className=" content-header-title mb-1 mt-1">Change Password</h2>
+                    <h2 className=" content-header-title mb-2 mt-5 text-center">Change Password</h2>
                     <div className="content-body">
                         <div className="col-md-6 mx-auto">
                             <div className="card card-body">
