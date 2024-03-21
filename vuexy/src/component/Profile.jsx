@@ -56,7 +56,7 @@ function Profile() {
                                     >
                                         <div className="d-flex">
                                             <a href="#" className="me-25">
-                                                <img
+                                                <img width={"100%"} maxWidth={"150px"} height={"150px"} className='rounded-top border border-warning'
 
                                                     src={
                                                         adminData?.image !== ""
@@ -70,8 +70,8 @@ function Profile() {
                                         </div>
                                         <form className="validate-form mt-2">
                                             <div className="row">
-                                                <div className="col-12 col-sm-6">
-                                                    <div className="mb-1">
+                                                <div className="col-12">
+                                                    <div className="mb-1 col-sm-6">
                                                         <label className="form-label" htmlFor="name">
                                                             Name
                                                         </label>
@@ -86,8 +86,8 @@ function Profile() {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="col-12 col-sm-6">
-                                                    <div className="mb-1">
+                                                <div className="col-12 ">
+                                                    <div className="mb-1 col-sm-6">
                                                         <label className="form-label" htmlFor="email">
                                                             E-mail
                                                         </label>
@@ -103,8 +103,8 @@ function Profile() {
                                                     </div>
                                                 </div>
 
-                                                <div className="col-12 col-sm-6">
-                                                    <div className="mb-1">
+                                                <div className="col-12 ">
+                                                    <div className="mb-1 col-sm-6">
                                                         <label className="form-label" htmlFor="phone">
                                                             Phone
                                                         </label>

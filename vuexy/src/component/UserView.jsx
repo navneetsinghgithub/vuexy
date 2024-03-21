@@ -54,7 +54,7 @@ function UserView() {
                                     >
                                         <div className="d-flex">
                                             <a href="#" className="me-25">
-                                                <img
+                                                <img width={"100%"} maxWidth={"150px"} height={"150px"} className='rounded-top border border-warning'
 
                                                     src={
                                                         data?.image !== ""

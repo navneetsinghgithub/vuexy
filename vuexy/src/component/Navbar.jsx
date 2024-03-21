@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { httpFile } from '../../config/axiosConfig'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import Swal from 'sweetalert2'
 
 function Navbar() {
     const navigate = useNavigate()
@@ -30,12 +31,29 @@ function Navbar() {
     const handleNavigate = () => {
         localStorage.clear()
         navigate("/")
-        toast.success("Successfully Logout")
+        // toast.success("Successfully Logout")
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, logout!" // Change the button text to "Yes, logout!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    "Logged out!",
+                    "You have been logged out successfully.",
+                    "success"
+                );
+            }
+        });
     }
     return (
         <>
             <nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
-                <div className="navbar-container d-flex content">
+                <div className="navbar-container d-flex content p-1">
                     <div className="bookmark-wrapper d-flex align-items-center">
                         <ul className="nav navbar-nav d-xl-none">
                             <li className="nav-item">
@@ -64,7 +82,7 @@ function Navbar() {
                                     <span className="user-name fw-bolder">{data?.name}</span>
                                     <span className="user-status">Admin</span>
                                 </div>
-                                <img height={"50px"} width={"70px"}
+                                <img height={"50px"} width={"50px"}
                                     className="rounded-circle mb-20"
                                     src={
                                         adminInfo?.image !== ""

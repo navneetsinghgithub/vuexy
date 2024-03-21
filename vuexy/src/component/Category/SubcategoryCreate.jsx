@@ -62,17 +62,23 @@ function SubcategoryCreate() {
                                             <div class="card">
                                                 <h2 className="p-2 pb-0 mb-0">Add Category</h2>
                                                 <form onSubmit={handlesubmit} onChange={handlechange}>
-                                                    <div>
-                                                        <select name="categoryId" id="categoryId">
-                                                            <option onChange={handleselectcate}>select</option>
-                                                            {category?.map((e) => (
-                                                                <option key={e._id} value={e?._id}>
-                                                                    {e?.name}
-                                                                </option>
-                                                            ))}
-                                                        </select>
-                                                    </div>
                                                     <div class="row p-2">
+                                                        <div class="col-12">
+                                                            <div class="mb-1 row">
+                                                                <div class="col-sm-3 w-10   ">
+                                                                    <label class="col-form-label" for="categoryId">category</label></div>
+                                                                <div class="col-sm-9">
+                                                                    <select className="w-30 bg-dark bg-gradient text-white" style={{ padding: "7px 5px" }} name="categoryId" id="categoryId">
+                                                                        <option onChange={handleselectcate}>select</option>
+                                                                        {category?.map((e) => (
+                                                                            <option key={e._id} value={e?._id}>
+                                                                                {e?.name}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-12">
                                                             <div class="mb-1 row">
                                                                 <div class="col-sm-3 w-10   ">

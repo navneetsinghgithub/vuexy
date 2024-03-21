@@ -11,8 +11,7 @@ module.exports = {
                 name: "required",
                 categoryId: "required",
             })
-            let errorResponse = await checkValidation(v)
-            console.log(errorResponse, "rrrrrrrrrrrr");
+            let errorResponse = await checkValidation(v)          
             if (errorResponse) {
                 return res.json({
                     success: false,
@@ -69,7 +68,7 @@ module.exports = {
         try {
             const data = await subCategoryModel.findById({
                 _id: req.params.id
-            })
+            }).populate("categoryId")
 
             return res.json({
                 success: true,
@@ -95,7 +94,7 @@ module.exports = {
 
             const data = await subCategoryModel.findByIdAndUpdate({
                 _id: req.params.id
-            }, { name: req.body.name,categoryId:req.body.categoryId, image: req.body.image }, { new: true })
+            }, { name: req.body.name, categoryId: req.body.categoryId, image: req.body.image }, { new: true })
 
             return res.json({
                 success: true,

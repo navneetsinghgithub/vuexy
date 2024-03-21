@@ -6,8 +6,8 @@ function AddCategory() {
     const [data, setData] = useState()
 
     const navigate = useNavigate()
-   
-    const handlechange = ((e) => {      
+
+    const handlechange = ((e) => {
         setData({ ...data, [e.target.name]: e.target.type === "file" ? e.target.files[0] : e.target.value })
     })
 
@@ -30,21 +30,21 @@ function AddCategory() {
     }
     return (
         <>
-            <div class="app-content content">
-                <div class="content-overlay"></div>
-                <div class="header-navbar-shadow"></div>
-                <div class="content-wrapper container-xxl p-0">
-                    <div class="content-header row">
-                        <div class="content-header-left">
-                            <div class="row breadcrumbs-top">
+            <div className="app-content content">
+                <div className="content-overlay"></div>
+                <div className="header-navbar-shadow"></div>
+                <div className="content-wrapper container-xxl p-0">
+                    <div className="content-header row">
+                        <div className="content-header-left">
+                            <div className="row breadcrumbs-top">
                                 <section id="basic-horizontal-layouts" className='mt-5'>
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="col-md-5 col-10 w-50">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4 class="card-title p-2 pb-0 mb-0">Add Category Form</h4>
+                                    <div className="row d-flex justify-content-center">
+                                        <div className="col-md-5 col-10 w-50">
+                                            <div className="card">
+                                                <div className="card-header">
+                                                    <h4 className="card-title p-2 pb-0 mb-0">Add Category Form</h4>
                                                 </div>
-                                                <div class="card-body">
+                                                <div className="card-body">
                                                     <form onSubmit={addCategoryUser} onChange={handlechange} >
                                                         <div className="row">
                                                             <div className="col-12">

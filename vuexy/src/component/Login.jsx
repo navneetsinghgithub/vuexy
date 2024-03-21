@@ -98,7 +98,7 @@ function Login() {
                                                         </div>
                                                         <div className="mb-1">
                                                             <label htmlFor="password" className="form-label">Password</label>
-                                                            <div className="password_group">
+                                                            <div className="password_group position-relative">
                                                                 <input
                                                                     type={eye ? "text" : "password"}
                                                                     className="form-control"
@@ -110,7 +110,7 @@ function Login() {
                                                                     onChange={(e) => setPassword(e.target.value)}
                                                                     required
                                                                 />
-                                                                <div className="eye_ico" onClick={handleEye}>{eye ? <Eye /> : <EyeOff />}</div>
+                                                                <div className="eye_ico position-absolute" style={{top:"7px",right:"9px"}} onClick={handleEye}>{eye ? <Eye /> : <EyeOff />}</div>
                                                             </div>
                                                         </div>
                                                         {/* {error && <div className="text-danger mb-1">{error}</div>} */}

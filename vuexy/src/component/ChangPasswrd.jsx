@@ -16,17 +16,13 @@ function ChangPasswrd() {
     const [confirmpasswordError, setConfirmpasswordError] = useState("");
 
     const adminInfo = JSON.parse(localStorage.getItem("token"))
-    // console.log(adminInfo, "adminnnnnn");
 
     const handleInputChange = (e) => {
-        // console.log(e.target.name, "eeeee");
-        // console.log(e.target.value,"hhhh");
         setData({ ...data, [e.target.name]: e.target.value });
     };
 
     const validateInput = () => {
         let valid = true;
-
         if (!data.password) {
             setPasswordError("Old Password is required");
             valid = false;
@@ -54,21 +50,18 @@ function ChangPasswrd() {
                         },
                     }
                 ).then((res) => {
-
                     setData(res.data.body);
                     if (res.data.success === true) {
                         navigate("/");
                     }
-
                 }).catch((err) => {
                     console.log(err, "err");
                 })
-
                 if (res.data.body) {
                     navigate("/dash");
                 }
             } catch (error) {
-                let message = error.response?.data?.message;
+                let message = error.message;
                 toast.error(message);
             }
         }
@@ -77,22 +70,15 @@ function ChangPasswrd() {
     const handleEye = () => {
         setEye(!eye);
     };
-
     const handleEye2 = () => {
         setEye2(!eye2);
     };
-
     const handleEye3 = () => {
         setEye3(!eye3);
     };
-
     const handleback = () => {
         navigate("/dash");
     };
-
-
-
-
     return (
         <>
             <div className="app-content content">
@@ -188,9 +174,6 @@ function ChangPasswrd() {
                     </div>
                 </div>
             </div>
-
-
-
         </>
     )
 }

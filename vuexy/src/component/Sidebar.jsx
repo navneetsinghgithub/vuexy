@@ -92,7 +92,7 @@ function Sidebar() {
                                         </g>
                                     </svg>
                                 </span>
-                              <Link to={"/dash"}>  <h2 className="brand-text">Project</h2></Link>
+                                <Link to={"/dash"}>  <h2 className="brand-text">Project</h2></Link>
                             </a>
                         </li>
                         <li className="nav-item nav-toggle">
@@ -134,22 +134,12 @@ function Sidebar() {
                             <span data-i18n="Apps & Pages">Apps &amp; Pages</span>
                             <i data-feather="more-horizontal" />
                         </li>
-                        {/* <li className=" nav-item">
-                            <a className="d-flex align-items-center" href="/user">
-                                <i data-feather="mail" />
-                                <Link to={"/user"} className="menu-title text-truncate">
-                                    <span data-i18n="Email">
-                                        User
-                                    </span>
-                                </Link>
-                            </a>
-                        </li> */}
                         <li className=" nav-item">
                             <a className="d-flex align-items-center" href="/user">
                                 <i data-feather="mail" />
                                 <Link to={"/cusineTables"} className="menu-title text-truncate">
                                     <span data-i18n="Email">
-                                      User
+                                        User
                                     </span>
                                 </Link>
                             </a>

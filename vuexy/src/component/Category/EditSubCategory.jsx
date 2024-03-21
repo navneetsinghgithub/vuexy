@@ -171,7 +171,7 @@
 
 import React, { useEffect, useState } from "react";
 import { httpFile } from "../../../config/axiosConfig";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function EditSubCategory() {
     const [category, setCategory] = useState()
@@ -219,7 +219,7 @@ function EditSubCategory() {
     }
     useEffect(() => {
         getSingleData()
-    },[])
+    }, [])
 
 
     const handleSubmit = async (e) => {
@@ -239,42 +239,60 @@ function EditSubCategory() {
     return (
 
         <>
-            <div class="app-content content">
-                <div class="content-overlay"></div>
-                <div class="header-navbar-shadow"></div>
+            <div className="app-content content">
+                <div className="content-overlay"></div>
+                <div className="header-navbar-shadow"></div>
                 <div class="content-wrapper container-xxl p-0">
-                    <div class="content-header row">
-                        <div class="content-header-left">
-                            <div class="row breadcrumbs-top">
-                                <section id="basic-horizontal-layouts">
-                                    <div class="row">
-                                        <div class="col-md-5 col-10 w-50">
-                                            <div class="card">
-                                                <form onChange={handlechange} onSubmit={handleSubmit}>
-                                                    <div class="card-header">
-                                                        <h4 class="card-title">Edit Category</h4>
-                                                        <div>
-                                                            <div>
-                                                                <select name="categoryId" id="categoryId">
-                                                                    <option onChange={handleSelectcate}>select</option>
-                                                                    {category?.map((e) => (
-                                                                        <option key={e?._id} value={e?._id}>
-                                                                            {e?.name}
-                                                                        </option>
-                                                                    ))}
-                                                                </select>
-                                                            </div>
-                                                            <div>
-                                                                <label for="name">name</label>
-                                                                <input type="text" name="name" id="name" value={data?.name}></input>
-                                                            </div>
-                                                            <div>
-                                                                <label for="image">image</label>
-                                                                <input type="file" name="image" id="file"></input>
+                    <div className="content-header row">
+                        <div className="content-header-left">
+                            <div className="row breadcrumbs-top">
+                                <section id="basic-horizontal-layouts" className="mt-5">
+                                    <div className="row d-flex justify-content-center">
+                                        <div className="col-md-5 col-10 w-50">
+                                            <div className="card">
+                                                <form onSubmit={handleSubmit} onChange={handlechange}>
+                                                    <div className="row p-2">
+                                                        <div className="col-12">
+                                                            <div className="mb-1 row">
+                                                                <div className="col-sm-3 w-10   ">
+                                                                    <label className="col-form-label" for="categoryId">category</label></div>
+                                                                <div className="col-sm-9">
+                                                                    <select className="w-30 bg-dark bg-gradient text-white" style={{ padding: "7px 5px" }} name="categoryId" id="categoryId">
+                                                                        <option onChange={handleSelectcate}>select</option>
+                                                                        {category?.map((e) => (
+                                                                            <option key={e._id} value={e?._id}>
+                                                                                {e?.name}
+                                                                            </option>
+                                                                        ))}
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div className="col-12">
+                                                            <div className="mb-1 row">
+                                                                <div className="col-sm-3 w-10   ">
+                                                                    <label className="col-form-label" for="name">Name</label></div>
+                                                                <div className="col-sm-9">
+                                                                    <input type="text" id="name" class="form-control" name="name" placeholder=" Name" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-12">
+                                                            <div className="mb-1 row">
+                                                                <div className="col-sm-3">
+                                                                    <label for="image" class="image">image</label>
+                                                                </div>
+                                                                <div className="col-sm-9">
+                                                                    <input type="file" id="file" class="form-control" name="image" />
+
+                                                                </div>
+                                                            </div>
+                                                            <div className="col-sm-9 ms-auto offset-sm-1">
+                                                                <button type="submit" class="btn btn-primary me-1">Submit</button>  
+                                                            <Link to={"/subCategory"}>  <button type="submit" class="btn btn-primary me-9">Back</button>  </Link>                          
+                                                            </div>                                                             
+                                                        </div>                                                      
                                                     </div>
-                                                    <button type="submit">Submit</button>
                                                 </form>
                                             </div>
                                         </div>

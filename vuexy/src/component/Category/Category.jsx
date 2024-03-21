@@ -83,9 +83,9 @@ function Category() {
                     </Link>
 
                     <Link
-                        to={`/categoryedit/${data._id}`}                       
+                        to={`/categoryedit/${data._id}`}
                         className="btn  px-2 py-1  btn-outline-info">
-                        <span dangerouslySetInnerHTML={{ __html: feather.icons.edit.toSvg() }}></span>                  
+                        <span dangerouslySetInnerHTML={{ __html: feather.icons.edit.toSvg() }}></span>
                         <i className="fas fa-pen"></i>
                     </Link>
                     <Link

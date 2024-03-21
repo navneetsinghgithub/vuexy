@@ -131,7 +131,7 @@ function CusineTables() {
                 <div
                     className="d-flex justify-content-start align-items-center gap-2"
                     style={{
-                        gap: "5px",
+                        gap: "4px",
                         justifyContent: "center",
                     }}
                 >
@@ -141,13 +141,6 @@ function CusineTables() {
                         <span dangerouslySetInnerHTML={{ __html: feather.icons.eye.toSvg() }}></span>
                         <i className="fas fa-eye"></i>
                     </Link>
-
-                    {/* <Link
-                        to={`/CuisineUpdate/${data._id}`}
-                        className="btn  px-2 py-1  btn-outline-info"
-                    >
-                        <i className="fas fa-pen"></i>
-                    </Link> */}
                     <Link
                         onClick={(e) => deleteHandler(data?._id)}
                         className="btn  px-2 py-1  btn-outline-danger">
@@ -157,10 +150,7 @@ function CusineTables() {
                 </div>
             )
             let statusButton = (
-                <div class="d-flex flex-column">
-                    {/* <label class="form-check-label mb-50" for="customSwitch4">
-                        Success
-                      </label> */}
+                <div class="d-flex flex-column">                
                     <div class="form-check form-check-success form-switch">
                         <input
                             type="checkbox"
@@ -205,7 +195,7 @@ function CusineTables() {
             <div className="app-content content ">
                 <div className="content-overlay"></div>
                 <div className="header-navbar-shadow"></div>
-                <div className="content-wrapper container-xxl p-0">
+                <div className="content-wrapper container-xxl p-1">
                     <div className="content-header row">
                     </div>
                     <div className="content-body"></div>
@@ -213,19 +203,14 @@ function CusineTables() {
                         <div
                             className="section-header  rounded py-4 shadow"
                             style={{
-                                marginTop: "-48px",
-                                padding: "17px",
+                                marginTop: "-40px",
+                                padding: "15px",
                                 display: "flex",
                                 justifyContent: "space-between",
                             }}
                         >
                             <h1> User Listing</h1>
-                            <Link
-                                to={`/CuisineCreate`}
-                                className="btn btn-icon icon-left btn-primary shadow"
-                            >
-                                <i className="far fa-edit "></i>Add User
-                            </Link>
+                       
                         </div>
 
                         <MUIDataTable data={data} columns={columns} options={options} />

@@ -50,12 +50,11 @@ function SubCategoryView() {
                                         className="tab-pane active"
                                         id="account-vertical-general"
                                         aria-labelledby="account-pill-general"
-                                        aria-expanded="true"
-                                    >
+                                        aria-expanded="true">
+
                                         <div className="d-flex">
                                             <a href="#" className="me-25">
-                                                <img
-
+                                                <img  width={"100%"} maxWidth={"150px"} height={"150px"} className='rounded-top border border-warning'
                                                     src={
                                                         data?.image !== ""
                                                             ? `http://localhost:1000/images/userImage/${data?.image
@@ -81,7 +80,21 @@ function SubCategoryView() {
                                                             id="name"
                                                             name="name"
                                                             readOnly
-                                                        />
+                                                        />                                            
+                                                    </div>
+                                                    <div className="mb-1">
+                                                        <label className="form-label" htmlFor="name">
+                                                            Category Name
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            value={data?.categoryId?.name || ''}
+                                                            onChange={(e) => setData({ ...data, name: e.target.value })}
+                                                            className="form-control"
+                                                            id="name"   
+                                                            name="name"
+                                                            readOnly
+                                                        />                                            
                                                     </div>
                                                 </div>
                                                 <div className="col-12 mt-75">

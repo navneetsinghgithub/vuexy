@@ -106,10 +106,10 @@ function TermCondition() {
 
                         <div className="card-body">
                           <div className="form-group row mb-4">
-                            <div className="col-11 ">
+                            <div className="col-12 ">
                               <label
-                                className="col-form-label col- text-dark font-weight-bold  py-3"
-                                style={{ float: "left" }}
+                                className="col-form-label col- text-dark font-weight-bold  py-1"
+                                style={{ float: "left", fontSize:"20px", fontWeight:"900" }}
                               >
                                 Title
                               </label>

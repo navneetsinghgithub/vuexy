@@ -60,7 +60,7 @@ function Updatee() {
                         <div class="content-header-left">
                             <div class="row breadcrumbs-top">
                                 <section id="basic-horizontal-layouts">
-                                    <div class="row">
+                                    <div class="row justify-content-center mt-5">
                                         <div class="col-md-5 col-10 w-50">
                                             <div class="card">
                                                 <div class="card-header">
