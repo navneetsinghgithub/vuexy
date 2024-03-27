@@ -8,7 +8,6 @@ function Navbar() {
     const navigate = useNavigate()
     const adminInfo = JSON.parse(localStorage.getItem("token"))
 
-
     const [data, setData] = useState()
     const getData = () => {
         try {

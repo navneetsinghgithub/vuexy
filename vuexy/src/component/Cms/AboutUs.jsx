@@ -3,6 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { httpFile } from '../../../config/axiosConfig';
+import { toast } from "react-toastify"
 
 function AboutUs() {
   const Navigate = useNavigate();
@@ -14,8 +15,8 @@ function AboutUs() {
 
 
   const getData = () => {
-  httpFile
-      .get(`http://localhost:1000/aboutUs`, {
+    httpFile
+      .get(`/aboutUs`, {
         // headers: {
         //   Authorization: `Bearer ${adminInfo?.token}`,
         // },
@@ -55,14 +56,14 @@ function AboutUs() {
       setUpdateValidation("This field is required");
       return Error;
     }
-   httpFile
-      .put(`http://localhost:1000/updateAboutCms`, AboutUs, {
+    httpFile
+      .put(`/updateAboutCms`, AboutUs, {
         //   headers: {
         //     Authorization: `Bearer ${adminInfo?.token}`,
         //   },`
       })
       .then((res) => {
-        // toast.success("Terms & Condition Updated Successfully");
+        toast.success("About us successfully updated");
         window.location.reload();
       })
       .catch((err) => {
@@ -112,7 +113,7 @@ function AboutUs() {
                             <div className="col-12 ">
                               <label
                                 className="col-form-label col- text-dark font-weight-bold  py-1"
-                                style={{ float: "left" , fontSize:"20px", fontWeight:"900" }}
+                                style={{ float: "left", fontSize: "20px", fontWeight: "900" }}
                               >
                                 Title
                               </label>

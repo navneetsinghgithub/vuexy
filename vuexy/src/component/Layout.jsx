@@ -9,12 +9,17 @@ import Footer from './Footer'
 function Layout() {
     return (
         <>
-            <Navbar />
-            <Sidebar />
-            <Outlet/>
-            <Footer/>
-        
-         
+            <div className='d-flex flex-column w-100' style={{ minHeight: '100vh', }}>
+                <Navbar />
+                <Sidebar />
+                <div className='maim-content'>
+                    <Outlet />
+                </div>
+               
+            </div>
+            <Footer />
+
+
         </>
     )
 }

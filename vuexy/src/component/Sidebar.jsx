@@ -143,6 +143,29 @@ function Sidebar() {
                                     </span>
                                 </Link>
                             </a>
+
+                            <li className=" nav-item">
+                                <a className="d-flex align-items-center" href="/user">
+                                    <i data-feather="mail" />
+                                    <Link to={"/category"} className="menu-title text-truncate">
+                                        <span data-i18n="Email">
+                                            Category
+                                        </span>
+                                    </Link>
+                                </a>
+                            </li>
+
+                            <li className=" nav-item">
+                                <a className="d-flex align-items-center" href="/user">
+                                    <i data-feather="mail" />
+                                    <Link to={"/subCategory"} className="menu-title text-truncate">
+                                        <span data-i18n="Email">
+                                            SubCategory
+                                        </span>
+                                    </Link>
+                                </a>
+                            </li>
+
                         </li>
                         <li className=" nav-item">
                             <a className="d-flex align-items-center" href="app-email.html">
@@ -174,27 +197,8 @@ function Sidebar() {
                                 </Link>
                             </a>
                         </li>
-                        <li className=" nav-item">
-                            <a className="d-flex align-items-center" href="/user">
-                                <i data-feather="mail" />
-                                <Link to={"/category"} className="menu-title text-truncate">
-                                    <span data-i18n="Email">
-                                        Category
-                                    </span>
-                                </Link>
-                            </a>
-                        </li>
 
-                        <li className=" nav-item">
-                            <a className="d-flex align-items-center" href="/user">
-                                <i data-feather="mail" />
-                                <Link to={"/subCategory"} className="menu-title text-truncate">
-                                    <span data-i18n="Email">
-                                        SubCategory
-                                    </span>
-                                </Link>
-                            </a>
-                        </li>
+
 
                     </ul>
                 </div>

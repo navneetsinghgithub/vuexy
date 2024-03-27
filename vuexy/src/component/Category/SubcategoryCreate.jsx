@@ -49,25 +49,25 @@ function SubcategoryCreate() {
 
     return (
         <>
-            <div class="app-content content">
-                <div class="content-overlay"></div>
-                <div class="header-navbar-shadow"></div>
-                <div class="content-wrapper container-xxl p-0">
-                    <div class="content-header row">
-                        <div class="content-header-left">
-                            <div class="row breadcrumbs-top">
+            <div className="app-content content">
+                <div className="content-overlay"></div>
+                <div className="header-navbar-shadow"></div>
+                <div className="content-wrapper container-xxl p-0">
+                    <div className="content-header row">
+                        <div className="content-header-left">
+                            <div className="row breadcrumbs-top">
                                 <section id="basic-horizontal-layouts" className="mt-5">
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="col-md-5 col-10 w-50">
-                                            <div class="card">
+                                    <div className="row d-flex justify-content-center">
+                                        <div className="col-md-5 col-10 w-50">
+                                            <div className="card">
                                                 <h2 className="p-2 pb-0 mb-0">Add Category</h2>
                                                 <form onSubmit={handlesubmit} onChange={handlechange}>
-                                                    <div class="row p-2">
-                                                        <div class="col-12">
-                                                            <div class="mb-1 row">
-                                                                <div class="col-sm-3 w-10   ">
-                                                                    <label class="col-form-label" for="categoryId">category</label></div>
-                                                                <div class="col-sm-9">
+                                                    <div className="row p-2">
+                                                        <div className="col-12">
+                                                            <div className="mb-1 row">
+                                                                <div className="col-sm-3 w-10   ">
+                                                                    <label className="col-form-label" for="categoryId">category</label></div>
+                                                                <div className="col-sm-9">
                                                                     <select className="w-30 bg-dark bg-gradient text-white" style={{ padding: "7px 5px" }} name="categoryId" id="categoryId">
                                                                         <option onChange={handleselectcate}>select</option>
                                                                         {category?.map((e) => (
@@ -79,27 +79,27 @@ function SubcategoryCreate() {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
-                                                            <div class="mb-1 row">
-                                                                <div class="col-sm-3 w-10   ">
-                                                                    <label class="col-form-label" for="name">Name</label></div>
-                                                                <div class="col-sm-9">
+                                                        <div className="col-12">
+                                                            <div className="mb-1 row">
+                                                                <div className="col-sm-3 w-10   ">
+                                                                    <label className="col-form-label" for="name">Name</label></div>
+                                                                <div className="col-sm-9">
                                                                     <input type="text" id="name" class="form-control" name="name" placeholder=" Name" />
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
-                                                            <div class="mb-1 row">
-                                                                <div class="col-sm-3">
+                                                        <div className="col-12">
+                                                            <div className="mb-1 row">
+                                                                <div className="col-sm-3">
                                                                     <label for="image" class="image">image</label>
                                                                 </div>
-                                                                <div class="col-sm-9">
+                                                                <div className="col-sm-9">
                                                                     <input type="file" id="file" class="form-control" name="image" />
 
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-9 offset-sm-3">
+                                                        <div className="col-sm-9 offset-sm-3">
                                                             <button type="submit" class="btn btn-primary me-1">Submit</button>
                                                         </div>
                                                     </div>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { httpFile } from '../../../config/axiosConfig';
 import MUIDataTable from "mui-datatables"
+import { toast } from 'react-toastify';
 
 function CusineTables() {
     const [dataa, setDataa] = useState([]);
@@ -23,7 +24,8 @@ function CusineTables() {
                     if (error == "Please Login First") {
                         localStorage.clear();
                         Navigate("/");
-                        // toast.error("Please Login First");
+                        window.location.reload();
+                        toast.error("Please Login First");
                     }
                     err.message;
                 });
@@ -108,7 +110,7 @@ function CusineTables() {
         " Email",
         "Phone",
         "Image",
-        "Role",
+        // "Role",
         "status",
         "Action"];
     let finalArray = [];
@@ -171,7 +173,7 @@ function CusineTables() {
             dataArray.push(data?.email);
             dataArray.push(data?.phone);
             dataArray.push(img);
-            dataArray.push(data?.role)
+            // dataArray.push(data?.role)
 
             // dataArray.push(data?.countryCode.concat(-data?.phone));
             dataArray.push(statusButton);

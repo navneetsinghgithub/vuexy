@@ -25,14 +25,17 @@ function ChangPasswrd() {
         let valid = true;
         if (!data.password) {
             setPasswordError("Old Password is required");
+            toast.error("Old Password is required")
             valid = false;
         }
         if (!data.newPassword) {
             setNewpasswordError("New Password is required");
+            toast.error("New Password is required")
             valid = false;
         }
         if (!data.confirmPassword) {
             setConfirmpasswordError("Confirm Password is required");
+            toast.error("Confirm Password is required")
             valid = false;
         }
         return valid;
@@ -44,15 +47,16 @@ function ChangPasswrd() {
             try {
                 httpFile.put(`/changePassword/${adminInfo?._id}`,
                     data,
-                    {
-                        headers: {
-                            authorization: `Bearer ${adminInfo?.token}`,
-                        },
-                    }
+                    // {
+                    //     headers: {
+                    //         authorization: `Bearer ${adminInfo?.token}`,
+                    //     },
+                    // }
                 ).then((res) => {
-                    setData(res.data.body);
+                    setData(res.data.body);             
                     if (res.data.success === true) {
-                        navigate("/");
+                        navigate("/dash");
+                        toast.success("Your Password Successfully Changed")
                     }
                 }).catch((err) => {
                     console.log(err, "err");
@@ -61,8 +65,8 @@ function ChangPasswrd() {
                     navigate("/dash");
                 }
             } catch (error) {
-                let message = error.message;
-                toast.error(message);
+
+                // toast.error("Your Password Not Changed");
             }
         }
     };
@@ -107,7 +111,7 @@ function ChangPasswrd() {
                                                         onChange={handleInputChange}
                                                     />
                                                     <div className="input-group-text cursor-pointer" onClick={handleEye}>
-                                                        {eye ? <EyeOff /> : <Eye />}
+                                                        {eye ? <Eye/> : <EyeOff  />}
                                                     </div>
                                                     {passwordError && <div className="invalid-feedback">{passwordError}</div>}
                                                 </div>
@@ -131,7 +135,7 @@ function ChangPasswrd() {
                                                         onChange={handleInputChange}
                                                     />
                                                     <div className="input-group-text cursor-pointer" onClick={handleEye2}>
-                                                        {eye2 ? <EyeOff /> : <Eye />}
+                                                        {eye2 ? <Eye/> : <EyeOff />}
                                                     </div>
                                                     {newpasswordError && <div className="invalid-feedback">{newpasswordError}</div>}
                                                 </div>
@@ -153,7 +157,7 @@ function ChangPasswrd() {
                                                         onChange={handleInputChange}
                                                     />
                                                     <div className="input-group-text cursor-pointer" onClick={handleEye3}>
-                                                        {eye3 ? <EyeOff /> : <Eye />}
+                                                        {eye3 ? <Eye/> : <EyeOff />}
                                                     </div>
                                                     {confirmpasswordError && <div className="invalid-feedback">{confirmpasswordError}</div>}
                                                 </div>
@@ -163,7 +167,7 @@ function ChangPasswrd() {
                                             <button type="submit" className="btn btn-primary me-1 mt-1" tabIndex={4}>
                                                 Save changes
                                             </button>
-                                            <button onClick={handleback} className="btn btn-primary me-1 mt-1">
+                                            <button onClick={handleback} className="btn btn-secondary me-1 mt-1">
                                                 Cancel
                                             </button>
                                         </div>

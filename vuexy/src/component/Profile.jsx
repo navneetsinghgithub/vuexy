@@ -1,10 +1,9 @@
 
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams, } from "react-router-dom";
+import { Link, useNavigate, useParams, } from "react-router-dom";
 import { httpFile } from "../../config/axiosConfig";
 
 function Profile() {
-
     const [adminData, setAdminData] = useState()
 
     const { id } = useParams();
@@ -23,7 +22,6 @@ function Profile() {
     useEffect(() => {
         getData()
     }, [])
-
 
     const handleNavigate = () => {
         navigate(`/edit/${adminData?._id}`)
@@ -123,9 +121,12 @@ function Profile() {
                                                 <div className="col-12">
                                                     <button type="submit" onClick={handleNavigate} className="btn btn-primary mt-2 me-1">
                                                         Edit
-                                                    </button>
+                                                    </button>                                                 
+                                                    <Link to={"/dash"}> <button type='submit' className="btn btn-secondary mt-2">Back</button>
+                                                    </Link>
+                                              
                                                 </div>
-                                            </div>
+                                            </div>                   
                                         </form>
                                     </div>
                                 </div>

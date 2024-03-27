@@ -15,8 +15,7 @@ function Updatee() {
     const getSingleData = () => {
         try {
             httpFile.get(`/findSingleUser/${id}`, data).then((res) => {
-                setData(res.data.body)
-               
+                setData(res.data.body)               
             }).catch((error) => {
                 console.log(error, "error");
             })
@@ -48,7 +47,6 @@ function Updatee() {
             console.log(error, "error");
         }
     }
-
 
     return (
         <>
@@ -131,6 +129,9 @@ function Updatee() {
                                                             <div className="col-sm-9 offset-sm-3">
                                                                 <button type="submit" className="btn btn-primary me-1">
                                                                     Update
+                                                                </button>
+                                                                <button type="submit" className="btn btn-primary me-1">
+                                                             Back
                                                                 </button>
 
                                                             </div>

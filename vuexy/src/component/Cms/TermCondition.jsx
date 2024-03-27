@@ -3,6 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { httpFile } from '../../../config/axiosConfig';
+import {toast} from "react-toastify"
 
 function TermCondition() {
 
@@ -16,7 +17,7 @@ function TermCondition() {
 
   const getData = async () => {
     await httpFile
-      .get(`http://localhost:1000/TermC`, {
+      .get(`/TermC`, {
         // headers: {
         //   Authorization: `Bearer ${adminInfo?.token}`,
         // },
@@ -56,13 +57,13 @@ function TermCondition() {
       return Error;
     }
     httpFile
-      .put(`http://localhost:1000/updateTermCms`, termsCondition, {
+      .put(`/updateTermCms`, termsCondition, {
         //   headers: {
         //     Authorization: `Bearer ${adminInfo?.token}`,
         //   },`
       })
       .then((res) => {
-        // toast.success("Terms & Condition Updated Successfully");
+        toast.success("Terms & Condition Updated Successfully");
         window.location.reload();
       })
       .catch((err) => {

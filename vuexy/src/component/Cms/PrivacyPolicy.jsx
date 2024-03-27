@@ -3,6 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useNavigate } from 'react-router-dom';
 import { httpFile } from '../../../config/axiosConfig';
+import {toast} from "react-toastify"
 
 
 function PrivacyPolicy() {
@@ -16,7 +17,7 @@ function PrivacyPolicy() {
 
   const getData = () => {
    httpFile
-      .get(`http://localhost:1000/privacyP`, {
+      .get(`/privacyP`, {
         // headers: {
         //   Authorization: `Bearer ${adminInfo?.token}`,
         // },
@@ -58,13 +59,13 @@ function PrivacyPolicy() {
       return Error;
     }
     httpFile
-      .put(`http://localhost:1000/updatePrivacyCms`, PrivacyPolicy, {
+      .put(`/updatePrivacyCms`, PrivacyPolicy, {
         //   headers: {
         //     Authorization: `Bearer ${adminInfo?.token}`,
         //   },`
       })
       .then((res) => {
-        // toast.success("Terms & Condition Updated Successfully");
+        toast.success("Privacy policy successfully updated");
         window.location.reload();
       })
       .catch((err) => {
