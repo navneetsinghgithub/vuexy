@@ -269,13 +269,12 @@ module.exports = {
 
     changePassword: async (req, res) => {
         try {
-
-
+            const { password, newPassword, confirmPassword } = req.body
+            
             const data = await userModel.findOne({ _id: req.params.id })
-
-            const decryptPassword = await bcrypt.compare(req.body.password, data.password)
+            const decryptPassword = await bcrypt.compare(password, data.password)
             if (decryptPassword == false) {
-                return res.json({
+                return res.status(400).json({
                     success: false,
                     status: 400,
                     message: "password does not match",
@@ -283,19 +282,18 @@ module.exports = {
                 })
             }
 
-
-            if (req.body.newPassword !== req.body.confirmPassword) {
-                return res.json({
+            if (req.body.newPassword !== confirmPassword) {
+                return res.status(400).json({
                     success: false,
                     status: 400,
                     message: "new password and confirm password does not match",
                     body: {}
                 })
             }
-            const encryptPassword = await bcrypt.hash(req.body.newPassword, saltRound)
+            const encryptPassword = await bcrypt.hash(newPassword, saltRound)
             data.password = encryptPassword
             data.save()
-            return res.json({
+            return res.status(200).json({
                 success: true,
                 status: 200,
                 message: "password updated successfully",
@@ -303,10 +301,10 @@ module.exports = {
             })
 
         } catch (error) {
-            return res.json({
+            return res.status(500).json({
                 success: false,
-                status: 404,
-                message: error
+                status: error.statusCode,
+                message: "error"
             })
         }
     },
