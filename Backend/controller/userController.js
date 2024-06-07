@@ -60,7 +60,6 @@ module.exports = {
                 image: req.body.image, role: req.body.role, status: req.body.status, password: password, otp: otp
             })
             const token = await tokengenerate(sign._id)
-
             const updateResult = await userModel.findByIdAndUpdate({
                 _id: sign._id
             }, { token: token.token, logintime: token.time }, { new: true })
