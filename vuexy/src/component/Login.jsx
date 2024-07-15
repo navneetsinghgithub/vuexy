@@ -36,11 +36,8 @@ function Login() {
                         localStorage.setItem("token", JSON.stringify(res.data.body))
                         navigate("/dash")
                         toast.success("Succesfully logged in")
-                     
                     }
                 }
-
-
                 else {
                     toast.error("Email Or Password Not Correct")
                 }
